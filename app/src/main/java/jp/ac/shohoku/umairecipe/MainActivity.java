@@ -3,101 +3,72 @@ package jp.ac.shohoku.umairecipe;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView textView;
-    private OpenHelper helper;
-    private EditText editTextKey, editTextValue;
-    private SQLiteDatabase db;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        // 各変数にidを格納
-        editTextKey = findViewById(R.id.edit_text_key);
-        editTextValue = findViewById(R.id.edit_text_value);
-        textView = findViewById(R.id.text_view);
+        //DBを作る
+        MakeDB makedb = new MakeDB();
+        makedb.MakeDB();
 
-        // DB作成
-        if(helper == null) {
-            helper = new OpenHelper(getApplicationContext());
-        }
-        if (db == null) {
-            db = helper.getWritableDatabase();
-        }
-        helper.saveData(db,"menu","mat");
+        setContentView(R.layout.main_home);
+
+        //ボタンを押したときにイベントを取得できるようにする
+        //メニューボタンの処理
+        //料理ボタン
+        Button menubutton = (Button)findViewById(R.id.menuButton);
+//        menubutton.setOnClickListener((v) ->{
+//            //ここに料理ボタンを押したときの処理
+//        });
+        // 材料ボタン
+        Button matbutton = (Button)findViewById(R.id.matButton);
+//        matbutton.setOnClickListener((v) ->{
+//            //ここに材料ボタンを押したときの処理
+//        });
+        // 曜日ボタン
+        Button monbutton =(Button)findViewById(R.id.MonButton);
+        monbutton.setOnClickListener((v) ->{
+          // インデントにこの画面と遷移するRecipeViewを指定する
+          Intent intent = new Intent(MainActivity.this, RecipeView.class);
+          startActivity(intent);
+        });
+        Button tuebutton =(Button)findViewById(R.id.TueButton);
+//        tuebutton.setOnClickListener((v) ->{
+//            //ここに火曜ボタンを押したときの処理
+//        });
+        Button wedbutton =(Button)findViewById(R.id.WedButton);
+//        wedbutton.setOnClickListener((v) ->{
+//            //ここに水曜ボタンを押したときの処理
+//        });
+        Button thubutton =(Button)findViewById(R.id.ThuButton);
+//        thubutton.setOnClickListener((v) ->{
+//            //ここに木曜ボタンを押したときの処理
+//        });
+        Button fributton =(Button)findViewById(R.id.FriButton);
+//        fributton.setOnClickListener((v) ->{
+//            //ここに金曜ボタンを押したときの処理
+//        });
+        Button satbutton =(Button)findViewById(R.id.SatButton);
+//        satbutton.setOnClickListener((v) ->{
+//            //ここに土曜ボタンを押したときの処理
+//        });
+        Button sunbutton =(Button)findViewById(R.id.SunButton);
+//        sunbutton.setOnClickListener((v) ->{
+//            //ここに日曜ボタンを押したときの処理
+//        });
 
 
-
-        saveData(textView);
-
-        readData(textView);
     }
-
-    /**
-     * DBからデータを全取得し画面に表示する
-     * @param  view
-     */
-    public void readData(View view){
-        if (helper == null){
-            helper = new OpenHelper(getApplicationContext());
-        }
-        if (db == null) {
-            db = helper.getReadableDatabase();
-        }
-        Cursor cursor = db.query(
-                "menudb",
-                new String[]{ "title", "materila" },
-                null,
-                null,
-                null,
-                null,
-                null
-        );
-
-        cursor.moveToFirst();
-
-        StringBuilder sbuilder = new StringBuilder();
-
-        for (int i = 0; i < cursor.getCount(); i++){
-            sbuilder.append(cursor.getString(0));
-            sbuilder.append(":    ");
-            sbuilder.append(cursor.getInt(1));
-            sbuilder.append("\n\n");
-            cursor.moveToNext();
-        }
-
-        cursor.close();
-
-        textView.setText(sbuilder.toString());
-    }
-
-    /**
-     * データを保存する
-     * @param view
-     */
-    public void saveData(View view){
-        SQLiteDatabase db = helper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-
-        EditText editTextTitle = editTextKey;
-        EditText editTextMaterial = editTextValue;
-        String title = editTextTitle.getText().toString();
-        String material = editTextMaterial.getText().toString();
-
-        values.put("title", title);
-        values.put("material", material);
-
-        db.insert("menubd", null, values);
-    }
-
 }
