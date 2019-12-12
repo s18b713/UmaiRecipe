@@ -39,11 +39,11 @@ public class MainActivity extends AppCompatActivity {
 //        });
         // 曜日ボタン
         Button monbutton =(Button)findViewById(R.id.MonButton);
-        monbutton.setOnClickListener((v) ->{
+          monbutton.setOnClickListener((v) ->{
           // インデントにこの画面と遷移するRecipeViewを指定する
           Intent intent = new Intent(MainActivity.this, RecipeView.class);
           startActivity(intent);
-        });
+          });
         Button tuebutton =(Button)findViewById(R.id.TueButton);
 //        tuebutton.setOnClickListener((v) ->{
 //            //ここに火曜ボタンを押したときの処理
