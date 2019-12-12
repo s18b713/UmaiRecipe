@@ -26,7 +26,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_home);
 
         //ボタンを押したときにイベントを取得できるようにする
+
         //メニューボタンの処理
+        //フラグメントの表示処理はここに追記する
+
         //料理ボタン
         Button menubutton = (Button)findViewById(R.id.menuButton);
 //        menubutton.setOnClickListener((v) ->{
