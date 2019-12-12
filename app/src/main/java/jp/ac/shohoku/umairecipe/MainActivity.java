@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
             //ここに材料ボタンを押したときの処理
-
            }
         });
         // 曜日ボタン
@@ -62,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //ここに火曜ボタンを押したときの処理
+                Intent intent = new Intent(MainActivity.this, RecipeView.class);
+                startActivity(intent);
             }
         });
         Button wedbutton =(Button)findViewById(R.id.WedButton);
@@ -69,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //ここに水曜ボタンを押したときの処理
+                Intent intent = new Intent(MainActivity.this, RecipeView.class);
+                startActivity(intent);
             }
         });
         Button thubutton =(Button)findViewById(R.id.ThuButton);
@@ -76,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
               @Override
               public void onClick(View view) {
                   //ここに木曜ボタンを押したときの処理
+                  Intent intent = new Intent(MainActivity.this, RecipeView.class);
+                  startActivity(intent);
               }
         });
         Button fributton =(Button)findViewById(R.id.FriButton);
@@ -83,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
               @Override
               public void onClick(View view) {
                   //ここに金曜ボタンを押したときの処理
+                  Intent intent = new Intent(MainActivity.this, RecipeView.class);
+                  startActivity(intent);
               }
         });
         Button satbutton =(Button)findViewById(R.id.SatButton);
@@ -90,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //ここに土曜ボタンを押したときの処理
+                Intent intent = new Intent(MainActivity.this, RecipeView.class);
+                startActivity(intent);
             }
         });
         Button sunbutton =(Button)findViewById(R.id.SunButton);
@@ -97,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //ここに日曜ボタンを押したときの処理
+                Intent intent = new Intent(MainActivity.this, RecipeView.class);
+                startActivity(intent);
             }
         });
 

@@ -56,7 +56,6 @@ public class MakeDB extends MainActivity{
             cursor.moveToNext();
         }
 
-        // 忘れずに！
         cursor.close();
 
         Log.d("debug","**********"+sbuilder.toString());
