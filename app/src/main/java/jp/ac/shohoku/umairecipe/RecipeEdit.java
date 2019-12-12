@@ -20,6 +20,7 @@ public class RecipeEdit extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //ここに保存ボタンを押したときの処理
+                //テキストエディットの内容をDBに追加する処理
             }
         });
 
@@ -29,13 +30,11 @@ public class RecipeEdit extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //このボタンを押すと、ホーム画面に移動する
-                Intent intent = new Intent(RecipeEdit.this, MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 
         //テキストエディットの処理
-        //テキストエディットの内容をDBに追加する処理
 
     }
 }

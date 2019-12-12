@@ -17,6 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:label="UmaiRecipe" android:name=".RecipeView"/>
+        <activity android:label="UmaiRecipe" android:name=".RecipeEdit"/>
+        <activity android:label="UmaiRecipe" android:name=".LikeView"/>
     </application>
 
 </manifest>
