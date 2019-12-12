@@ -38,83 +38,6 @@
         app:layout_constraintStart_toEndOf="@+id/menuButton"
         app:layout_constraintTop_toTopOf="@+id/menuButton" />
 
-    <Button
-        android:id="@+id/MonButton"
-        android:layout_width="333dp"
-        android:layout_height="80dp"
-        android:text="Button"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.412"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/MonText1" />
-
-    <Button
-        android:id="@+id/TueButton"
-        android:layout_width="333dp"
-        android:layout_height="80dp"
-        android:text="Button"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/MonButton"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/MonButton"
-        app:layout_constraintTop_toBottomOf="@+id/MonButton" />
-
-    <Button
-        android:id="@+id/WedButton"
-        android:layout_width="333dp"
-        android:layout_height="80dp"
-        android:text="Button"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/TueButton"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/TueButton"
-        app:layout_constraintTop_toBottomOf="@+id/TueButton" />
-
-    <Button
-        android:id="@+id/ThuButton"
-        android:layout_width="333dp"
-        android:layout_height="80dp"
-        android:text="Button"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/WedButton"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/WedButton"
-        app:layout_constraintTop_toBottomOf="@+id/WedButton" />
-
-    <Button
-        android:id="@+id/FriButton"
-        android:layout_width="333dp"
-        android:layout_height="80dp"
-        android:text="Button"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/ThuButton"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/ThuButton"
-        app:layout_constraintTop_toBottomOf="@+id/ThuButton" />
-
-    <Button
-        android:id="@+id/SatButton"
-        android:layout_width="333dp"
-        android:layout_height="80dp"
-        android:text="Button"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/FriButton"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/FriButton"
-        app:layout_constraintTop_toBottomOf="@+id/FriButton" />
-
-    <Button
-        android:id="@+id/SunButton"
-        android:layout_width="333dp"
-        android:layout_height="80dp"
-        android:text="Button"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/SatButton"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/SatButton"
-        app:layout_constraintTop_toBottomOf="@+id/SatButton" />
-
     <TextView
         android:id="@+id/MonText2"
         android:layout_width="250dp"
@@ -257,5 +180,83 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/SatText1"
         app:layout_constraintTop_toBottomOf="@+id/SatText1" />
+
+    <Button
+        android:id="@+id/MonButton"
+        android:layout_width="333dp"
+        android:layout_height="80dp"
+        android:text="Button"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.412"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/MonText1" />
+
+    <Button
+        android:id="@+id/TueButton"
+        android:layout_width="333dp"
+        android:layout_height="80dp"
+        android:text="Button"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/MonButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/MonButton"
+        app:layout_constraintTop_toBottomOf="@+id/MonButton" />
+
+    <Button
+        android:id="@+id/WedButton"
+        android:layout_width="333dp"
+        android:layout_height="80dp"
+        android:text="Button"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/TueButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/TueButton"
+        app:layout_constraintTop_toBottomOf="@+id/TueButton" />
+
+    <Button
+        android:id="@+id/ThuButton"
+        android:layout_width="333dp"
+        android:layout_height="80dp"
+        android:text="Button"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/WedButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/WedButton"
+        app:layout_constraintTop_toBottomOf="@+id/WedButton" />
+
+    <Button
+        android:id="@+id/FriButton"
+        android:layout_width="333dp"
+        android:layout_height="80dp"
+        android:text="Button"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/ThuButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/ThuButton"
+        app:layout_constraintTop_toBottomOf="@+id/ThuButton" />
+
+    <Button
+        android:id="@+id/SatButton"
+        android:layout_width="333dp"
+        android:layout_height="80dp"
+        android:text="Button"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/FriButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/FriButton"
+        app:layout_constraintTop_toBottomOf="@+id/FriButton" />
+
+    <Button
+        android:id="@+id/SunButton"
+        android:layout_width="333dp"
+        android:layout_height="80dp"
+        android:text="Button"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/SatButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/SatButton"
+        app:layout_constraintTop_toBottomOf="@+id/SatButton" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
