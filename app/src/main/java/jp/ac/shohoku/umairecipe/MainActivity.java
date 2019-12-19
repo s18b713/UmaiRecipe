@@ -22,9 +22,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        //DBを作る
-//        MakeDB makedb = new MakeDB();
-//        makedb.MakeDB();
+        //DBを作る
+        MakeDB makedb = new MakeDB();
+        makedb.MakeDB();
 
         setContentView(R.layout.main_home);
 
@@ -34,25 +34,25 @@ public class MainActivity extends AppCompatActivity {
         int[] color = {255, 160, 160};
         if (week == 1) {
             TextView SunText1 = (TextView) findViewById(R.id.SunText1);
-            SunText1.setBackgroundColor(Color.rgb(color[0], color[1], color[3]));
+            SunText1.setBackgroundColor(Color.rgb(color[0], color[1], color[2]));
         } else if (week == 2) {
             TextView MonText1 = (TextView) findViewById(R.id.MonText1);
-            MonText1.setBackgroundColor(Color.rgb(color[0], color[1], color[3]));
+            MonText1.setBackgroundColor(Color.rgb(color[0], color[1], color[2]));
         } else if (week == 3) {
             TextView TueText1 = (TextView) findViewById(R.id.TueText1);
-            TueText1.setBackgroundColor(Color.rgb(color[0], color[1], color[3]));
+            TueText1.setBackgroundColor(Color.rgb(color[0], color[1], color[2]));
         } else if (week == 4) {
             TextView WedText1 = (TextView) findViewById(R.id.WedText1);
-            WedText1.setBackgroundColor(Color.rgb(color[0], color[1], color[3]));
+            WedText1.setBackgroundColor(Color.rgb(color[0], color[1], color[2]));
         } else if (week == 5) {
             TextView ThuText1 = (TextView) findViewById(R.id.ThuText1);
-            ThuText1.setBackgroundColor(Color.rgb(color[0], color[1], color[3]));
+            ThuText1.setBackgroundColor(Color.rgb(color[0], color[1], color[2]));
         } else if (week == 6) {
             TextView FriText1 = (TextView) findViewById(R.id.FriText1);
-            FriText1.setBackgroundColor(Color.rgb(color[0], color[1], color[3]));
+            FriText1.setBackgroundColor(Color.rgb(color[0], color[1], color[2]));
         } else if (week == 7) {
             TextView SatText1 = (TextView) findViewById(R.id.SatText1);
-            SatText1.setBackgroundColor(Color.rgb(color[0], color[1], color[3]));
+            SatText1.setBackgroundColor(Color.rgb(color[0], color[1], color[2]));
         };
 
         //ボタンを押したときにイベントを取得できるようにする
