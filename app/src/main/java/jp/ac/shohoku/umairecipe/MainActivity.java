@@ -6,11 +6,14 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,10 +28,43 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.main_home);
 
-        //ボタンを押したときにイベントを取得できるようにする
+        //今日の曜日の色だけ変える
+        Calendar calendar = Calendar.getInstance();
+        int week = calendar.get(Calendar.DAY_OF_WEEK);
+        int[] color = {255, 160, 160};
+        if (week == 1) {
+            TextView SunText1 = (TextView) findViewById(R.id.SunText1);
+            SunText1.setBackgroundColor(Color.rgb(color[0], color[1], color[3]));
+        } else if (week == 2) {
+            TextView MonText1 = (TextView) findViewById(R.id.MonText1);
+            MonText1.setBackgroundColor(Color.rgb(color[0], color[1], color[3]));
+        } else if (week == 3) {
+            TextView TueText1 = (TextView) findViewById(R.id.TueText1);
+            TueText1.setBackgroundColor(Color.rgb(color[0], color[1], color[3]));
+        } else if (week == 4) {
+            TextView WedText1 = (TextView) findViewById(R.id.WedText1);
+            WedText1.setBackgroundColor(Color.rgb(color[0], color[1], color[3]));
+        } else if (week == 5) {
+            TextView ThuText1 = (TextView) findViewById(R.id.ThuText1);
+            ThuText1.setBackgroundColor(Color.rgb(color[0], color[1], color[3]));
+        } else if (week == 6) {
+            TextView FriText1 = (TextView) findViewById(R.id.FriText1);
+            FriText1.setBackgroundColor(Color.rgb(color[0], color[1], color[3]));
+        } else if (week == 7) {
+            TextView SatText1 = (TextView) findViewById(R.id.SatText1);
+            SatText1.setBackgroundColor(Color.rgb(color[0], color[1], color[3]));
+        };
 
-        //メニューボタンの処理
-        //フラグメントの表示処理はここに追記する
+        //ボタンを押したときにイベントを取得できるようにする
+        //メニューボタン
+        Button menubarbutton = (Button)findViewById(R.id.menubarButton);
+        menubarbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //ここにメニューボタンを押したときの処理
+                //フラグメントの表示処理はここに追記する？
+            }
+        });
 
         //料理ボタン
         Button menubutton = (Button)findViewById(R.id.menuButton);
@@ -36,15 +72,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
             //ここに料理ボタンを押したときの処理
-    }
-});
+            //料理名だけの表示になる
+                //曜日の表示サイズの変更、表示内容の変更
+            }
+        });
+
         // 材料ボタン
         Button matbutton = (Button)findViewById(R.id.matButton);
         matbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
             //ここに材料ボタンを押したときの処理
-           }
+            //材料だけの表示になる
+                //曜日の表示サイズの変更、表示内容の変更
+            }
         });
         // 曜日ボタン
         Button monbutton =(Button)findViewById(R.id.MonButton);
@@ -110,7 +151,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
 }
