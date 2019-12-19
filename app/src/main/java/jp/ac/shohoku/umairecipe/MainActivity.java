@@ -17,14 +17,12 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //DBを作る
-        MakeDB makedb = new MakeDB();
-        makedb.MakeDB();
+        MakeDB makedb = new MakeDB(this);
 
         setContentView(R.layout.main_home);
 

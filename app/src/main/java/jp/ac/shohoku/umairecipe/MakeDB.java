@@ -1,6 +1,7 @@
 package jp.ac.shohoku.umairecipe;
 
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -9,24 +10,24 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MakeDB extends MainActivity{
+public class MakeDB {
     private TextView textView;
     private OpenHelper helper;
     private EditText editTextKey, editTextValue;
     private SQLiteDatabase db;
 
-    public  void MakeDB() {
+    public  MakeDB(Activity activity) {
         if (helper  == null){
-            helper = new OpenHelper(getApplicationContext());
+            helper = new OpenHelper(activity.getApplicationContext());
         }
         if (db == null){
             db = helper.getWritableDatabase();
         }
     }
 
-    private void readData(){
+    private void readData(Activity activity){
         if(helper == null){
-            helper = new OpenHelper(getApplicationContext());
+            helper = new OpenHelper(activity.getApplicationContext());
         }
 
         if(db == null){
