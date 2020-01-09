@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 public class LikeView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

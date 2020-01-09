@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
+
 public class MakeDB {
     private TextView textView;
     private OpenHelper helper;

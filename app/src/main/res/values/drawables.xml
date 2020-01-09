@@ -3,3 +3,4 @@
     <item name="ic_menu_add" type="drawable">@drawable/ic_menu_add</item>
     <item name="ic_menu_like" type="drawable">@drawable/ic_menu_like</item>
 </resources>
+

@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 import jp.ac.shohoku.umairecipe.R;
 import jp.ac.shohoku.umairecipe.ui.add.AddViewModel;
 
+
 public class LikeFragment extends Fragment {
 
     private AddViewModel addViewModel;
