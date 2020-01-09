@@ -2,16 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/mix">
 
     <Button
         android:id="@+id/menubarButton"
-        android:layout_width="85dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
         android:layout_marginTop="16dp"
         android:text="メニュー"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,107 +24,31 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginLeft="80dp"
-        android:layout_marginTop="16dp"
         android:text="料理"
         app:layout_constraintStart_toEndOf="@+id/menubarButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/menubarButton" />
 
     <Button
         android:id="@+id/matButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="材料"
-        app:layout_constraintBottom_toBottomOf="@+id/menuButton"
         app:layout_constraintStart_toEndOf="@+id/menuButton"
         app:layout_constraintTop_toTopOf="@+id/menuButton" />
 
     <TextView
-        android:id="@+id/MonText2"
-        android:layout_width="250dp"
-        android:layout_height="80dp"
-        android:text="月曜日のごはん"
-        app:layout_constraintBottom_toTopOf="@+id/TueText1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/MonText1"
-        app:layout_constraintTop_toTopOf="@+id/MonText1"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/TueText2"
-        android:layout_width="250dp"
-        android:layout_height="80dp"
-        android:text="火曜日のごはん"
-        app:layout_constraintEnd_toEndOf="@+id/MonText2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/MonText1"
-        app:layout_constraintTop_toBottomOf="@+id/MonText2" />
-
-    <TextView
-        android:id="@+id/WedText2"
-        android:layout_width="250dp"
-        android:layout_height="80dp"
-        android:text="水曜日のごはん"
-        app:layout_constraintEnd_toEndOf="@+id/TueText2"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/TueText1"
-        app:layout_constraintTop_toBottomOf="@+id/TueText2" />
-
-    <TextView
-        android:id="@+id/ThuText2"
-        android:layout_width="250dp"
-        android:layout_height="80dp"
-        android:text="木曜日のごはん"
-        app:layout_constraintEnd_toEndOf="@+id/WedText2"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/WedText1"
-        app:layout_constraintTop_toBottomOf="@+id/WedText2" />
-
-    <TextView
-        android:id="@+id/FriText2"
-        android:layout_width="250dp"
-        android:layout_height="80dp"
-        android:text="金曜日のごはん"
-        app:layout_constraintEnd_toEndOf="@+id/ThuText2"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/ThuText1"
-        app:layout_constraintTop_toBottomOf="@+id/ThuText2" />
-
-    <TextView
-        android:id="@+id/SatText2"
-        android:layout_width="250dp"
-        android:layout_height="80dp"
-        android:text="土曜日のごはん"
-        app:layout_constraintEnd_toEndOf="@+id/FriText2"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/FriText1"
-        app:layout_constraintTop_toBottomOf="@+id/FriText2" />
-
-    <TextView
-        android:id="@+id/SunText2"
-        android:layout_width="250dp"
-        android:layout_height="80dp"
-        android:text="日曜日のごはん"
-        app:layout_constraintEnd_toEndOf="@+id/SatText2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/SatText1"
-        app:layout_constraintTop_toBottomOf="@+id/SatText2" />
-
-    <TextView
         android:id="@+id/MonText1"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="76dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
         android:text="月曜日"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/menubarButton"
+        app:layout_constraintTop_toBottomOf="@+id/menubarButton" />
 
     <TextView
         android:id="@+id/TueText1"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="火曜日"
         app:layout_constraintEnd_toEndOf="@+id/MonText1"
         app:layout_constraintHorizontal_bias="1.0"
@@ -132,8 +57,8 @@
 
     <TextView
         android:id="@+id/WedText1"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="水曜日"
         app:layout_constraintEnd_toEndOf="@+id/TueText1"
         app:layout_constraintHorizontal_bias="1.0"
@@ -142,8 +67,8 @@
 
     <TextView
         android:id="@+id/ThuText1"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="木曜日"
         app:layout_constraintEnd_toEndOf="@+id/WedText1"
         app:layout_constraintHorizontal_bias="1.0"
@@ -152,8 +77,8 @@
 
     <TextView
         android:id="@+id/FriText1"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="金曜日"
         app:layout_constraintEnd_toEndOf="@+id/ThuText1"
         app:layout_constraintHorizontal_bias="1.0"
@@ -162,8 +87,8 @@
 
     <TextView
         android:id="@+id/SatText1"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="土曜日"
         app:layout_constraintEnd_toEndOf="@+id/FriText1"
         app:layout_constraintHorizontal_bias="1.0"
@@ -172,28 +97,94 @@
 
     <TextView
         android:id="@+id/SunText1"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="日曜日"
         app:layout_constraintEnd_toEndOf="@+id/SatText1"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/SatText1"
         app:layout_constraintTop_toBottomOf="@+id/SatText1" />
 
+
+    <TextView
+        android:id="@+id/MonText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="月曜日のごはん"
+        app:layout_constraintStart_toEndOf="@+id/MonText1"
+        app:layout_constraintTop_toTopOf="@+id/MonText1" />
+
+    <TextView
+        android:id="@+id/TueText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="火曜日のごはん"
+        app:layout_constraintEnd_toEndOf="@+id/MonText2"
+        app:layout_constraintStart_toStartOf="@+id/MonText2"
+        app:layout_constraintTop_toBottomOf="@+id/MonText2" />
+
+    <TextView
+        android:id="@+id/WedText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="水曜日のごはん"
+        app:layout_constraintEnd_toEndOf="@+id/TueText2"
+        app:layout_constraintStart_toStartOf="@+id/TueText2"
+        app:layout_constraintTop_toBottomOf="@+id/TueText2" />
+
+    <TextView
+        android:id="@+id/ThuText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="木曜日のごはん"
+        app:layout_constraintEnd_toEndOf="@+id/WedText2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/WedText2"
+        app:layout_constraintTop_toBottomOf="@+id/WedText2" />
+
+    <TextView
+        android:id="@+id/FriText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="金曜日のごはん"
+        app:layout_constraintEnd_toEndOf="@+id/ThuText2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/ThuText2"
+        app:layout_constraintTop_toBottomOf="@+id/ThuText2" />
+
+    <TextView
+        android:id="@+id/SatText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="土曜日のごはん"
+        app:layout_constraintEnd_toEndOf="@+id/FriText2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/FriText2"
+        app:layout_constraintTop_toBottomOf="@+id/FriText2" />
+
+    <TextView
+        android:id="@+id/SunText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="日曜日のごはん"
+        app:layout_constraintEnd_toEndOf="@+id/SatText2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/SatText2"
+        app:layout_constraintTop_toBottomOf="@+id/SatText2" />
+
+
     <Button
         android:id="@+id/MonButton"
-        android:layout_width="333dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/clear_button_bg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.412"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/MonText1" />
+        app:layout_constraintStart_toStartOf="@+id/MonText2"
+        app:layout_constraintTop_toTopOf="@+id/MonText2" />
 
     <Button
         android:id="@+id/TueButton"
-        android:layout_width="333dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/clear_button_bg"
         app:layout_constraintEnd_toEndOf="@+id/MonButton"
         app:layout_constraintHorizontal_bias="0.0"
@@ -202,8 +193,8 @@
 
     <Button
         android:id="@+id/WedButton"
-        android:layout_width="333dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/clear_button_bg"
         app:layout_constraintEnd_toEndOf="@+id/TueButton"
         app:layout_constraintHorizontal_bias="0.0"
@@ -212,8 +203,8 @@
 
     <Button
         android:id="@+id/ThuButton"
-        android:layout_width="333dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/clear_button_bg"
         app:layout_constraintEnd_toEndOf="@+id/WedButton"
         app:layout_constraintHorizontal_bias="0.0"
@@ -222,8 +213,8 @@
 
     <Button
         android:id="@+id/FriButton"
-        android:layout_width="333dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/clear_button_bg"
         app:layout_constraintEnd_toEndOf="@+id/ThuButton"
         app:layout_constraintHorizontal_bias="0.0"
@@ -232,8 +223,8 @@
 
     <Button
         android:id="@+id/SatButton"
-        android:layout_width="333dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/clear_button_bg"
         app:layout_constraintEnd_toEndOf="@+id/FriButton"
         app:layout_constraintHorizontal_bias="0.0"
@@ -242,8 +233,8 @@
 
     <Button
         android:id="@+id/SunButton"
-        android:layout_width="333dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/clear_button_bg"
         app:layout_constraintEnd_toEndOf="@+id/SatButton"
         app:layout_constraintHorizontal_bias="0.0"
