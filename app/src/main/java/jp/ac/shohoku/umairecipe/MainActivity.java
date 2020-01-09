@@ -162,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     public void setSize(){
 
         // 画面サイズを取得する
