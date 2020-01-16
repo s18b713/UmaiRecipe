@@ -8,5 +8,7 @@
     <color name="colorRed">#FF0000</color>
     <color name="colorGray">#DDDDDD</color>
     <color name="colorblack">#000000</color>
+    <color name="clearButtonPressed">#00000000</color>
+
 
 </resources>
