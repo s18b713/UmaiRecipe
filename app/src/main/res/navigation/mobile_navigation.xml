@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="jp.ac.shohoku.umairecipe.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_add"
+        android:name="jp.ac.shohoku.umairecipe.ui.add.AddFragment"
+        android:label="@string/menu_add"
+        tools:layout="@layout/fragment_add" />
+
+    <fragment
+        android:id="@+id/nav_like"
+        android:name="jp.ac.shohoku.umairecipe.ui.like.LikeFragment"
+        android:label="@string/menu_like"
+        tools:layout="@layout/fragment_like" />
+
+</navigation>

@@ -20,8 +20,7 @@ public class RecipeView extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //このボタンを押すと、ホーム画面に移動する
-                Intent intent = new Intent(RecipeView.this, MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 
@@ -30,7 +29,9 @@ public class RecipeView extends AppCompatActivity {
         likebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //ここにお気に入りボタンを押したときの処理
+                //このボタンを押すと、お気に入り表示に移動する
+                Intent intent = new Intent(RecipeView.this, LikeView.class);
+                startActivity(intent);
             }
         });
 
