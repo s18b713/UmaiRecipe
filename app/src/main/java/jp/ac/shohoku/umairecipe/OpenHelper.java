@@ -24,34 +24,42 @@ public class OpenHelper extends SQLiteOpenHelper {
     private static final String COLUMN_NAME_SUBTITLE = "mat";
 
 
+
     //テーブル作成のSQL文
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + TABLE_NAME +
-                    " (" + _ID + " INTEGER PRIMARY KEY," +
+                    " (" + _ID + " INTEGER PRIMARY KEY,"
+                    +
                     COLUMN_NAME_TITLE + " TEXT," +
-                    COLUMN_NAME_SUBTITLE + " INTEGER)";
+                    COLUMN_NAME_SUBTITLE + " TEXT," +
+                    COLUMN_NAME_SUBTITLE + " TEXT)";
 
     //テーブル削除のSQL文
-    private static final String  SQL_DELETE_ENTRIES =
+    private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + TABLE_NAME;
 
-    public OpenHelper(Context context){
+    public OpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db){
+    public void onCreate(SQLiteDatabase db) {
         //テーブルの作成
         // ファイルがなければ作成される
         db.execSQL(
                 SQL_CREATE_ENTRIES
         );
 
+        //ここにデフォルトのメニューを入れる
+        saveData(db, "menu1", "mat1", "url");
+        saveData(db, "menu2", "mat2", "url");
+
+
         Log.d("debug", "onCreate(SQLiteDatabase db)");
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //アプデの判別。古いverは削除して新規作成
         db.execSQL(
                 SQL_DELETE_ENTRIES
@@ -59,7 +67,20 @@ public class OpenHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void  onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion){
+    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
+    }
+
+    private void saveData(SQLiteDatabase db, String menu, String mat, String url) {
+        saveData(db, menu, mat, url, 0);
+    }
+
+    public void saveData(SQLiteDatabase db, String menu, String mat, String url, int like) {
+        ContentValues values = new ContentValues();
+        values.put("manu", menu);
+        values.put("mat", mat);
+        values.put("url", url);
+        values.put("like", like);
+        db.insert("umaidb", null, values);
     }
 }

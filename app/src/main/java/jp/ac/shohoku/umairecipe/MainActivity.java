@@ -48,6 +48,17 @@ public class MainActivity extends AppCompatActivity {
         //ボタンなどのサイズを画面サイズに合わせて変更する
         setSize();
 
+//**********DB_test用
+        Button dbbutton = (Button)findViewById(R.id.dbButton);
+        dbbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, DBTest.class);
+                startActivity(intent);
+            }
+        });
+//********
+
         //ボタンを押したときにイベントを取得できるようにする
         //メニューボタン
         Button menubarbutton = (Button)findViewById(R.id.menubarButton);
@@ -55,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //ここにメニューボタンを押したときの処理
-                //フラグメントの表示処理はここに追記する？
             }
         });
 
