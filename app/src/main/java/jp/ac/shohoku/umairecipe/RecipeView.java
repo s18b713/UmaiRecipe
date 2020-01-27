@@ -4,15 +4,31 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class RecipeView extends AppCompatActivity {
+
+    private TextView menuTextView;
+    private TextView matTextView;
+
     @Override
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
 
         setContentView(R.layout.recipe_view);
+
+        Intent intent = getIntent();
+        final int umaiid = intent.getIntExtra("umaiid", 0);
+
+
+        // 表示する
+        menuTextView = findViewById(R.id.mainmenu);
+        matTextView = findViewById(R.id.mainmat);
+        final MakeDB makedb = new MakeDB(this);
+        makedb.readOneData(this, umaiid, menuTextView, matTextView);
+
 
         //閉じるボタン
         Button closebutton =(Button)findViewById(R.id.closeButton);
@@ -29,9 +45,8 @@ public class RecipeView extends AppCompatActivity {
         likebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //このボタンを押すと、お気に入り表示に移動する
-                Intent intent = new Intent(RecipeView.this, LikeView.class);
-                startActivity(intent);
+                makedb.reLike(RecipeView.this, umaiid);
+
             }
         });
 

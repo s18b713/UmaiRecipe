@@ -19,6 +19,7 @@
         <activity android:label="UmaiRecipe" android:name=".RecipeView"/>
         <activity android:label="UmaiRecipe" android:name=".RecipeEdit"/>
         <activity android:label="UmaiRecipe" android:name=".LikeView"/>
+        <activity android:label="UmaiRecipe" android:name=".DBTest"/>
     </application>
 
 </manifest>

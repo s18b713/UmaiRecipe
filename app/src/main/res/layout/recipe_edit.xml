@@ -27,7 +27,7 @@
         android:layout_marginTop="63dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="MenuTitleを入れてください"
+        android:hint="MenuTitleを入れてください"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,8 +46,8 @@
         android:layout_height="405dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="材料を入力してください"
+        android:inputType="textMultiLine"
+        android:hint="材料を入力してください"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -69,8 +69,8 @@
         android:layout_marginLeft="16dp"
         android:layout_marginBottom="24dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="URLがあれば入力してください"
+        android:inputType="textUri"
+        android:hint="URLがあれば入力してください"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -85,6 +85,7 @@
         android:layout_marginRight="68dp"
         android:background="@drawable/frame_sample"
         android:text="保存"
+
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edimat" />
@@ -102,5 +103,6 @@
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

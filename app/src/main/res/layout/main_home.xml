@@ -36,14 +36,21 @@
         app:layout_constraintStart_toEndOf="@+id/menuButton"
         app:layout_constraintTop_toTopOf="@+id/menuButton" />
 
+    <Button
+        android:id="@+id/reroadButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="更新"
+        app:layout_constraintStart_toEndOf="@+id/matButton"
+        app:layout_constraintTop_toTopOf="@+id/matButton" />
 <!--dbtest用-->
     <Button
         android:id="@+id/dbButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DB"
-        app:layout_constraintStart_toEndOf="@+id/matButton"
-        app:layout_constraintTop_toTopOf="@+id/matButton" />
+        app:layout_constraintStart_toEndOf="@+id/reroadButton"
+        app:layout_constraintTop_toTopOf="@+id/reroadButton" />
 <!--dbtest用-->
 
     <TextView
@@ -252,26 +259,26 @@
         app:layout_constraintTop_toBottomOf="@+id/SatButton" />
 
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawer_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        tools:openDrawer="start">
+<!--    <androidx.drawerlayout.widget.DrawerLayout-->
+<!--        android:id="@+id/drawer_layout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:fitsSystemWindows="true"-->
+<!--        tools:openDrawer="start">-->
 
-        <include
-            layout="@layout/app_bar_main"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+<!--        <include-->
+<!--            layout="@layout/app_bar_main"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent" />-->
 
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/nav_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:fitsSystemWindows="true"
-            app:menu="@menu/activity_main_drawer" />
+<!--        <com.google.android.material.navigation.NavigationView-->
+<!--            android:id="@+id/nav_view"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_gravity="start"-->
+<!--            android:fitsSystemWindows="true"-->
+<!--            app:menu="@menu/activity_main_drawer" />-->
 
-    </androidx.drawerlayout.widget.DrawerLayout>
+<!--    </androidx.drawerlayout.widget.DrawerLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
