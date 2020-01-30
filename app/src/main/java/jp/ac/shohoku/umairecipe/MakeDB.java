@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.TextView;
 
+
 public class MakeDB {
     private OpenHelper helper;
     private SQLiteDatabase db;

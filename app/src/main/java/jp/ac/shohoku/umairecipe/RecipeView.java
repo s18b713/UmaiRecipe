@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 public class RecipeView extends AppCompatActivity {
 
     private TextView menuTextView;

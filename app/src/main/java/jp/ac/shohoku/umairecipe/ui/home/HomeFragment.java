@@ -16,6 +16,7 @@ import jp.ac.shohoku.umairecipe.R;
 import jp.ac.shohoku.umairecipe.ui.home.HomeViewModel;
 
 
+
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
