@@ -273,7 +273,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     public void setSize(){
         TextView[] textView1s = {(TextView) findViewById(R.id.SunText1),
                 (TextView) findViewById(R.id.MonText1),
