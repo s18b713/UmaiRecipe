@@ -23,14 +23,7 @@ public class AddFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         addViewModel =
                 ViewModelProviders.of(this).get(AddViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_add, container, false);
-        final TextView textView = root.findViewById(R.id.text_add);
-        addViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        View root = inflater.inflate(R.layout.recipe_edit, container, false);
         return root;
     }
 }

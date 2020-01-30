@@ -1,22 +1,18 @@
 package jp.ac.shohoku.umairecipe;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.Calendar;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -24,31 +20,59 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.drawerlayout.widget.DrawerLayout;
+import java.util.Calendar;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+//import androidx.navigation.NavController;
+//import androidx.navigation.Navigation;
+//import androidx.navigation.ui.AppBarConfiguration;
+//import androidx.navigation.ui.NavigationUI;
+//import com.google.android.material.navigation.NavigationView;
 
-import android.view.Menu;
+//import android.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppBarConfiguration mAppBarConfiguration;
 
+    private AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //既存のDBを消す
+        // verupを防ぐ（完成時に消去すること）
+        deleteDatabase("UmaiRecipeDB.db");
+
         //DBを作る
-        MakeDB makedb = new MakeDB(this);
+        final MakeDB makedb = new MakeDB(this);
 
         setContentView(R.layout.main_home);
+
+        //まずはDBのメニュー名を曜日欄に表示する
+        final TextView[] textView2s = {(TextView) findViewById(R.id.SunText2),
+                (TextView) findViewById(R.id.MonText2),
+                (TextView) findViewById(R.id.TueText2),
+                (TextView) findViewById(R.id.WedText2),
+                (TextView) findViewById(R.id.ThuText2),
+                (TextView) findViewById(R.id.FriText2),
+                (TextView) findViewById(R.id.SatText2)};
+        makedb.readMenuData(this, textView2s);
 
         //今日の曜日の色を変える
         WeekColor();
         //ボタンなどのサイズを画面サイズに合わせて変更する
         setSize();
+
+//**********DB_test用
+        Button dbbutton = (Button)findViewById(R.id.dbButton);
+        dbbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, DBTest.class);
+                startActivity(intent);
+            }
+        });
+//********
 
         //ボタンを押したときにイベントを取得できるようにする
         //メニューボタン
@@ -57,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //ここにメニューボタンを押したときの処理
-                //フラグメントの表示処理はここに追記する？
             }
         });
 
@@ -68,7 +91,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
             //ここに料理ボタンを押したときの処理
             //料理名だけの表示になる
-                //曜日の表示サイズの変更、表示内容の変更
+
+                TextView[] textView2s = {(TextView) findViewById(R.id.SunText2),
+                        (TextView) findViewById(R.id.MonText2),
+                        (TextView) findViewById(R.id.TueText2),
+                        (TextView) findViewById(R.id.WedText2),
+                        (TextView) findViewById(R.id.ThuText2),
+                        (TextView) findViewById(R.id.FriText2),
+                        (TextView) findViewById(R.id.SatText2)};
+
+                makedb.readMenuData(MainActivity.this, textView2s);
+                //曜日の表示サイズの変更
             }
         });
 
@@ -79,9 +112,33 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
             //ここに材料ボタンを押したときの処理
             //材料だけの表示になる
+
+                TextView[] textView2s = {(TextView) findViewById(R.id.SunText2),
+                        (TextView) findViewById(R.id.MonText2),
+                        (TextView) findViewById(R.id.TueText2),
+                        (TextView) findViewById(R.id.WedText2),
+                        (TextView) findViewById(R.id.ThuText2),
+                        (TextView) findViewById(R.id.FriText2),
+                        (TextView) findViewById(R.id.SatText2)};
+
+                makedb.readMatData(MainActivity.this, textView2s);
                 //曜日の表示サイズの変更、表示内容の変更
             }
         });
+
+        //更新ボタン
+        Button reroadbutton = (Button)findViewById(R.id.reroadButton);
+        reroadbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //曜日ごとのメニューを変える
+                makedb.reroadweekData(MainActivity.this);
+                //画面を更新する
+                makedb.readMenuData(MainActivity.this, textView2s);
+            }
+        });
+
+
         // 曜日ボタン
         Button monbutton =(Button)findViewById(R.id.MonButton);
         monbutton.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                // インデントにこの画面と遷移するRecipeViewを指定する
                Intent intent = new Intent(MainActivity.this, RecipeView.class);
+                intent.putExtra("umaiid", 2);
                startActivity(intent);
             }
           });
@@ -98,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //ここに火曜ボタンを押したときの処理
                 Intent intent = new Intent(MainActivity.this, RecipeView.class);
+                intent.putExtra("umaiid", 3);
                 startActivity(intent);
             }
         });
@@ -107,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //ここに水曜ボタンを押したときの処理
                 Intent intent = new Intent(MainActivity.this, RecipeView.class);
+                intent.putExtra("umaiid", 4);
                 startActivity(intent);
             }
         });
@@ -116,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
               public void onClick(View view) {
                   //ここに木曜ボタンを押したときの処理
                   Intent intent = new Intent(MainActivity.this, RecipeView.class);
+                  intent.putExtra("umaiid", 5);
                   startActivity(intent);
               }
         });
@@ -125,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
               public void onClick(View view) {
                   //ここに金曜ボタンを押したときの処理
                   Intent intent = new Intent(MainActivity.this, RecipeView.class);
+                  intent.putExtra("umaiid", 6);
                   startActivity(intent);
               }
         });
@@ -134,6 +196,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //ここに土曜ボタンを押したときの処理
                 Intent intent = new Intent(MainActivity.this, RecipeView.class);
+                intent.putExtra("umaiid", 7);
                 startActivity(intent);
             }
         });
@@ -143,11 +206,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //ここに日曜ボタンを押したときの処理
                 Intent intent = new Intent(MainActivity.this, RecipeView.class);
+                intent.putExtra("umaiid", 1);
                 startActivity(intent);
             }
         });
 
-        setContentView(R.layout.main_home);
+        setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -179,6 +243,7 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+
     public void WeekColor(){
         //今日の曜日の色だけ変える
         Calendar calendar = Calendar.getInstance();
@@ -208,15 +273,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     public void setSize(){
-
-        // 画面サイズを取得する
-        Display display = getWindowManager().getDefaultDisplay();
-        Point p = new Point();
-        display.getSize(p);
-        int width = p.x;
-        int height = p.y;
-
         TextView[] textView1s = {(TextView) findViewById(R.id.SunText1),
                 (TextView) findViewById(R.id.MonText1),
                 (TextView) findViewById(R.id.TueText1),
@@ -241,11 +299,19 @@ public class MainActivity extends AppCompatActivity {
                 (Button) findViewById(R.id.WedButton),
                 (Button) findViewById(R.id.SatButton)};
 
+
+
+        // 画面サイズを取得する
+        Display display = getWindowManager().getDefaultDisplay();
+        Point p = new Point();
+        display.getSize(p);
+        int width = p.x;
+        int height = p.y;
+
         int Hsize = height / 10;
         int Wsize = width -100;
         for (int i = 0; i<7; i++){
             textView1s[i].setHeight(Hsize);
-
             textView2s[i].setHeight(Hsize);
             buttons[i].setHeight(Hsize);
         }

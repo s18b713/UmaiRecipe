@@ -13,25 +13,18 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import jp.ac.shohoku.umairecipe.R;
-import jp.ac.shohoku.umairecipe.ui.add.AddViewModel;
+import jp.ac.shohoku.umairecipe.ui.like.LikeViewModel;
 
 
 public class LikeFragment extends Fragment {
 
-    private AddViewModel addViewModel;
+    private LikeViewModel likeViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        addViewModel =
-                ViewModelProviders.of(this).get(AddViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_add, container, false);
-        final TextView textView = root.findViewById(R.id.text_add);
-        addViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        likeViewModel =
+                ViewModelProviders.of(this).get(LikeViewModel.class);
+        View root = inflater.inflate(R.layout.like_view, container, false);
         return root;
     }
 }
