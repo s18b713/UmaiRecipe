@@ -111,7 +111,6 @@ public class OpenHelper extends SQLiteOpenHelper {
         values.put("url", url);
         values.put("fav", fav);
         db.insert("umaidb", null, values);
-        Log.d("debug", "saveData");
     }
 
 
@@ -158,6 +157,8 @@ public class OpenHelper extends SQLiteOpenHelper {
         saveData(db, "menu7", "mat7", "url");
         saveData(db, "menu8", "mat8", "url");
         saveData(db, "menu9", "mat9", "url");
+
+        Log.d("debug", "savedefData");
     }
 
 }

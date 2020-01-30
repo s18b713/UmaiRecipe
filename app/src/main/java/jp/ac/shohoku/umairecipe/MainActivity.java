@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         matbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
             //ここに材料ボタンを押したときの処理
             //材料だけの表示になる
 
