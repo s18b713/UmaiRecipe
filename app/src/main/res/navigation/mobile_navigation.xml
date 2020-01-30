@@ -9,18 +9,18 @@
         android:id="@+id/nav_home"
         android:name="jp.ac.shohoku.umairecipe.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/main_home" />
 
     <fragment
         android:id="@+id/nav_add"
         android:name="jp.ac.shohoku.umairecipe.ui.add.AddFragment"
         android:label="@string/menu_add"
-        tools:layout="@layout/fragment_add" />
+        tools:layout="@layout/recipe_edit" />
 
     <fragment
         android:id="@+id/nav_like"
         android:name="jp.ac.shohoku.umairecipe.ui.like.LikeFragment"
         android:label="@string/menu_like"
-        tools:layout="@layout/fragment_like" />
+        tools:layout="@layout/like_view" />
 
 </navigation>
