@@ -27,11 +27,5 @@
         android:layout_height="wrap_content"
         android:text="更新" />
 
-    <Button
-        android:id="@+id/testbutton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="recipeeditに行く" />
-
 
 </LinearLayout>
