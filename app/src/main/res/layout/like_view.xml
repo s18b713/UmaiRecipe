@@ -9,23 +9,20 @@
 
     <Button
         android:id="@+id/likecloseButton"
-        android:layout_width="114dp"
-        android:layout_height="78dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
         android:text="閉じる"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="216dp"
-        android:layout_height="59dp"
-        android:text="coming soon..."
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/liketextView"
+        android:layout_width="127dp"
+        android:layout_height="0dp"
+        android:text="お気に入りはありません"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/likecloseButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

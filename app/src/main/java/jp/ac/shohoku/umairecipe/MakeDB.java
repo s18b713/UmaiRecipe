@@ -268,7 +268,7 @@ public class MakeDB {
         db.insert("umaidb", null, values);
     }
 
-    public void reLike(Activity activity, int umaiid){
+    public int reLike(Activity activity, int umaiid){
         Log.d("debug","**********Cursor");
 
         Cursor cursor = db.query(
@@ -301,6 +301,7 @@ public class MakeDB {
             }
             cursor2.moveToNext();
         }
+        int like = 0;
 
         cursor.moveToFirst();
         //readumaiidとumaidbの_idを比較して一致したらlikeの値を変える
@@ -309,8 +310,10 @@ public class MakeDB {
 
                 if (cursor.getInt(3) == 0){
                     cv.put("fav", 1);
+                    like = 1;
                 }else {
                     cv.put("fav", 0);
+                    like = 0;
                 }
                 db.update("umaidb", cv, "_id = " + readumaiid, null);
             }
@@ -319,8 +322,46 @@ public class MakeDB {
 
         cursor.close();
         cursor2.close();
-
         Log.d("debug","**********weekmenus");
+        return like;
     }
 
+
+    public void readLikeData(Activity activity, TextView liketext) {
+        Log.d("debug","**********likeCursor");
+
+        Cursor cursor = db.query(
+                "umaidb",
+                new String[] {"menu","mat", "fav"},
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+        cursor.moveToFirst();
+        StringBuilder likesbuilder = new StringBuilder();
+
+        for (int i = 0; i < cursor.getCount(); i++) {
+            if (cursor.getInt(2) == 1) {
+                likesbuilder.append(cursor.getString(0));
+                likesbuilder.append(": ");
+                likesbuilder.append(cursor.getString(1));
+                likesbuilder.append("\n");
+            }
+            cursor.moveToNext();
+        }
+        cursor.close();
+        String x =likesbuilder.toString();
+        x = x.replaceAll("　", "");
+        x = x.replaceAll(" ", "");
+
+        if (x == ""){
+            likesbuilder.append("登録がありません");
+        }
+        Log.d("debug", "liketextの取得");
+
+        liketext.setText(likesbuilder.toString());
+
+    }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -46,8 +47,15 @@ public class RecipeView extends AppCompatActivity {
         likebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                makedb.reLike(RecipeView.this, umaiid);
+                int like = makedb.reLike(RecipeView.this, umaiid);
 
+                if (like == 0){
+                    Toast.makeText(RecipeView.this, "お気に入りから削除しました", Toast.LENGTH_SHORT).show();
+                }else if (like == 1){
+                    Toast.makeText(RecipeView.this, "お気に入りに登録しました", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(RecipeView.this, "LikeError", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
