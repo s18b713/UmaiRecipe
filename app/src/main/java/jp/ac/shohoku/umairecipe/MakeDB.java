@@ -147,12 +147,6 @@ public class MakeDB {
     }
 
     public void readMatData(Activity activity, TextView[] textViews){
-        if(helper == null){
-            helper = new OpenHelper(activity.getApplicationContext());
-        }
-        if(db == null){
-            db = helper.getReadableDatabase();
-        }
         Log.d("debug","**********Cursor");
 
         Cursor cursor = db.query(
@@ -363,5 +357,55 @@ public class MakeDB {
 
         liketext.setText(likesbuilder.toString());
 
+    }
+
+    public int[] coutWeekMat() {
+        int[] weekmat = new int[7];
+
+        Cursor cursor = db.query(
+                "umaidb",
+                new String[] { "_id", "mat"},
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+        Cursor cursorweek = db.query(
+                "umaiweek",
+                new String[]{"umaiid"},
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+        int umaiid;
+        int id;
+        String string;
+        String[] strs;
+
+        cursorweek.moveToFirst();
+        for (int i = 0; i < cursorweek.getCount(); i++){
+            umaiid = cursorweek.getInt(0);
+            cursor.moveToFirst();
+            for (int j = 0; j < cursor.getCount(); j++) {
+                id = cursor.getInt(0);
+                int count = 0;
+                if (umaiid == id) {
+                    string = cursor.getString(1);
+                    strs = string.split("\n");
+                    weekmat[i] = strs.length;
+                }
+                cursor.moveToNext();
+            }
+            cursorweek.moveToNext();
+        }
+        cursor.close();
+        cursorweek.close();
+
+
+        return weekmat;
     }
 }

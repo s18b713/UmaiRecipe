@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment {
         //今日の曜日の色を変える
         WeekColor(textView1s);
         //ボタンなどのサイズを画面サイズに合わせて変更する
-        setSize(textView1s, textView2s, buttons);
+        setmenuSize(textView1s, textView2s, buttons);
 
 //**********DB_test用
         Button dbbutton = (Button) root.findViewById(R.id.dbButton);
@@ -102,6 +102,8 @@ public class HomeFragment extends Fragment {
                 //料理名だけの表示になる
                 makedb.readMenuData(Activity, textView2s);
                 //曜日の表示サイズの変更
+                setmenuSize(textView1s,textView2s,buttons);
+
             }
         });
 
@@ -115,6 +117,11 @@ public class HomeFragment extends Fragment {
                 //材料だけの表示になる
                 makedb.readMatData(Activity, textView2s);
                 //曜日の表示サイズの変更、表示内容の変更
+                //曜日ごとのmatの数を取得
+                int[] weekmat= new int[7];
+                weekmat = makedb.coutWeekMat();
+                setmatSize(weekmat,textView1s,textView2s,buttons);
+
             }
         });
 
@@ -207,7 +214,8 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
-    public void WeekColor(TextView[] textView1s) {
+
+    private void WeekColor(TextView[] textView1s) {
         //今日の曜日の色だけ変える
         Calendar calendar = Calendar.getInstance();
         int week = calendar.get(Calendar.DAY_OF_WEEK);
@@ -236,7 +244,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    public void setSize(TextView[] textView1s, TextView[] textView2s, Button[] buttons) {
+    private void setmenuSize(TextView[] textView1s, TextView[] textView2s, Button[] buttons) {
         SharedPreferences preferences = getContext().getSharedPreferences("winSize", Context.MODE_PRIVATE);
         int width = preferences.getInt("width", 0);
         int height = preferences.getInt("height", 0);
@@ -254,5 +262,22 @@ public class HomeFragment extends Fragment {
             buttons[i].setHeight(Hsize);
             buttons[i].setWidth(Wsize3);
         }
+    }
+
+    private void setmatSize(int[] weekmat, TextView[] textView1s, TextView[] textView2s, Button[] buttons) {
+        SharedPreferences preferences = getContext().getSharedPreferences("winSize", Context.MODE_PRIVATE);
+        int height = preferences.getInt("height", 0);
+        int Hsize = height / 10;
+        int fsize = 36;  //フォントサイズが決まればそれ
+        for (int i = 0; i<7; i++){
+            int size = fsize * weekmat[i];
+            if (Hsize < size){
+                textView1s[i].setHeight(size);
+                textView2s[i].setHeight(size);
+                buttons[i].setHeight(size);
+            }
+        }
+
+
     }
 }
