@@ -243,11 +243,16 @@ public class HomeFragment extends Fragment {
 
         // ひきわたされた画面サイズからサイズ調整をする
         int Hsize = height / 10;
-        int Wsize = width -100;
+        int Wsize1 = width / 6 ;
+        int Wsize2 = width / 2 ;
+        int Wsize3 = width / 4 * 3;
         for (int i = 0; i<7; i++){
             textView1s[i].setHeight(Hsize);
+            textView1s[i].setWidth(Wsize1);
             textView2s[i].setHeight(Hsize);
+            textView2s[i].setWidth(Wsize2);
             buttons[i].setHeight(Hsize);
+            buttons[i].setWidth(Wsize3);
         }
     }
 }
