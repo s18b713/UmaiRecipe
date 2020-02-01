@@ -69,14 +69,13 @@ public class AddFragment extends Fragment {
                 getFragmentManager().popBackStack();
             }
         });
-
-
         return root;
     }
 
     @Override
     public void onStart(){
         super.onStart();
-
     }
+
+
 }
