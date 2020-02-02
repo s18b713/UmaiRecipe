@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putInt("height", height);
         editor.commit();
 
+
     }
 
     @Override
