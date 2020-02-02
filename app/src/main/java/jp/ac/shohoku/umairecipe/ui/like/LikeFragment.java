@@ -19,9 +19,11 @@ import jp.ac.shohoku.umairecipe.R;
 public class LikeFragment extends Fragment {
 
     private LikeViewModel likeViewModel;
-    private String liketext;
+    private String liketext, haslike;
     private String[] likeText;
-    LinearLayout linearLayout;
+    private LinearLayout linearLayout;
+    int fav = 0;
+    Object[] getLTandfav;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -32,19 +34,26 @@ public class LikeFragment extends Fragment {
         linearLayout = root.findViewById(R.id.likeViewLayout);
 
         final MakeDB makedb = new MakeDB(getActivity());
-        liketext = makedb.readLikeData();
+        getLTandfav = makedb.readLikeData();
+
+        liketext = (String) getLTandfav[0];
+        fav = (int) getLTandfav[1];
         likeText = liketext.split("\n");
 
         for (int i = 0; i < likeText.length; i++){
             final TextView textView = new TextView(getContext());
             textView.setText(likeText[i]);
+            haslike = likeText[i];
+
             textView.setId(R.id.likeText);
             textView.setLinksClickable(true);
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(getActivity(), "クリックされた", Toast.LENGTH_SHORT).show();
-                    //likeText[i]をもってRecipeViewに行きたい
+                    if (fav == 1) {
+                        Toast.makeText(getActivity(), haslike, Toast.LENGTH_SHORT).show();
+                        //likeText[i]をもってRecipeViewに行きたい
+                    }
                 }
             });
 

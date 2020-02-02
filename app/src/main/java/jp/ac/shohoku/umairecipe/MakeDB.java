@@ -321,8 +321,11 @@ public class MakeDB {
     }
 
 
-    public String readLikeData() {
+    public Object[] readLikeData() {
         Log.d("debug","**********likeCursor");
+
+        Object[] object = new Object[2];
+        int fav = 1;
 
         Cursor cursor = db.query(
                 "umaidb",
@@ -354,12 +357,16 @@ public class MakeDB {
 
         if (x == ""){
             likesbuilder.append("登録がありません");
+            fav = 0;
         }
         Log.d("debug", "liketextの取得");
 
         liketext = likesbuilder.toString();
 
-        return liketext;
+        object[0] = liketext;
+        object[1] = fav;
+
+        return object;
     }
 
     public int[] coutWeekMat() {
