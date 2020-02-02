@@ -35,6 +35,16 @@
             android:gravity="right">
 
             <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/toEditbutton"
+                android:text="編集"/>
+
+            <Space
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"/>
+
+            <Button
                 android:layout_height="50dp"
                 android:layout_width="50dp"
                 android:id="@+id/likeButton"

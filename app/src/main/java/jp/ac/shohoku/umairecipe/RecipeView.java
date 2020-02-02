@@ -8,12 +8,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.ui.AppBarConfiguration;
 
 
 public class RecipeView extends AppCompatActivity {
 
     private TextView menuTextView;
     private TextView matTextView;
+    private AppBarConfiguration mAppBarConfiguration;
+
 
     @Override
     protected void onCreate(Bundle saveInstanceState) {
@@ -56,6 +59,16 @@ public class RecipeView extends AppCompatActivity {
                 }else{
                     Toast.makeText(RecipeView.this, "LikeError", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        //編集ボタン
+        Button toEditbutton = (Button)findViewById(R.id.toEditbutton);
+        toEditbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                //recipeViewに行きたい
+
             }
         });
 

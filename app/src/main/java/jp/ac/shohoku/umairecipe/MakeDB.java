@@ -321,7 +321,7 @@ public class MakeDB {
     }
 
 
-    public void readLikeData(Activity activity, TextView liketext) {
+    public String readLikeData() {
         Log.d("debug","**********likeCursor");
 
         Cursor cursor = db.query(
@@ -333,14 +333,16 @@ public class MakeDB {
                 null,
                 null
         );
+        String liketext;
+
         cursor.moveToFirst();
         StringBuilder likesbuilder = new StringBuilder();
 
         for (int i = 0; i < cursor.getCount(); i++) {
             if (cursor.getInt(2) == 1) {
                 likesbuilder.append(cursor.getString(0));
-                likesbuilder.append(": ");
-                likesbuilder.append(cursor.getString(1));
+//                likesbuilder.append(": ");
+//                likesbuilder.append(cursor.getString(1));
                 likesbuilder.append("\n");
             }
             cursor.moveToNext();
@@ -355,8 +357,9 @@ public class MakeDB {
         }
         Log.d("debug", "liketextの取得");
 
-        liketext.setText(likesbuilder.toString());
+        liketext = likesbuilder.toString();
 
+        return liketext;
     }
 
     public int[] coutWeekMat() {

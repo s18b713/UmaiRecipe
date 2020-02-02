@@ -83,16 +83,6 @@ public class HomeFragment extends Fragment {
         });
 //********
 
-        //ボタンを押したときにイベントを取得できるようにする
-        //メニューボタン
-        Button menubarbutton = (Button) root.findViewById(R.id.menubarButton);
-        menubarbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //ここにメニューボタンを押したときの処理
-            }
-        });
-
         //料理ボタン
         Button menubutton = (Button) root.findViewById(R.id.menuButton);
         menubutton.setOnClickListener(new View.OnClickListener() {
