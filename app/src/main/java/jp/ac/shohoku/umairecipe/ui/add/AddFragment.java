@@ -36,7 +36,7 @@ public class AddFragment extends Fragment {
 
         //もしRecipeViewからきてたら0以外が受け取られる
         final SharedPreferences umaiPreferences = getContext().getSharedPreferences("_Id", Context.MODE_PRIVATE);
-        final int id = umaiPreferences.getInt("Id", 0);
+        final int id = umaiPreferences.getInt("ID", 0);
 
 
         edimenu = root.findViewById(R.id.edimenu);
