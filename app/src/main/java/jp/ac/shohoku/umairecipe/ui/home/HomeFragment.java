@@ -74,6 +74,12 @@ public class HomeFragment extends Fragment {
         WeekColor(textView1s);
         //ボタンなどのサイズを画面サイズに合わせて変更する
         setmenuSize(textView1s, textView2s, buttons);
+        SharedPreferences umaiPreferences;
+        umaiPreferences = getContext().getSharedPreferences("_Id", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = umaiPreferences.edit();
+        editor.putInt("ID", 0);
+        editor.commit();
+
 
 //**********DB_test用
         Button dbbutton = (Button) root.findViewById(R.id.dbButton);

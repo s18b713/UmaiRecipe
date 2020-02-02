@@ -38,7 +38,6 @@ public class AddFragment extends Fragment {
         final SharedPreferences umaiPreferences = getContext().getSharedPreferences("_Id", Context.MODE_PRIVATE);
         final int id = umaiPreferences.getInt("ID", 0);
 
-
         edimenu = root.findViewById(R.id.edimenu);
         edimat = root.findViewById(R.id.edimat);
         ediurl = root.findViewById(R.id.ediurl);
@@ -110,6 +109,11 @@ public class AddFragment extends Fragment {
             public void onClick(View view) {
                 //このボタンを押すと、ホーム画面に移動する
                 getFragmentManager().popBackStack();
+                SharedPreferences umaiPreferences;
+                umaiPreferences = getContext().getSharedPreferences("_Id", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = umaiPreferences.edit();
+                editor.putInt("ID", 0);
+                editor.commit();
             }
         });
         return root;

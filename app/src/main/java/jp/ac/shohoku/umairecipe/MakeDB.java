@@ -179,10 +179,10 @@ public class MakeDB {
         Log.d("debug","*********read weekmats");
     }
 
-    public void readOneData(TextView menuTextView, TextView matTextView, int id) {
+    public void readOneData(TextView menuTextView, TextView matTextView, TextView urlTextView, int id) {
         Cursor cursor = db.query(
                 "umaidb",
-                new String[] {"_id", "menu","mat"},
+                new String[] {"_id", "menu","mat", "url"},
                 null,
                 null,
                 null,
@@ -194,6 +194,7 @@ public class MakeDB {
             if(id == cursor.getInt(0)) {
                 menuTextView.setText(cursor.getString(1));
                 matTextView.setText(cursor.getString(2));
+                urlTextView.setText(cursor.getString(3));
             }
             cursor.moveToNext();
         }

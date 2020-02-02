@@ -15,8 +15,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 
 public class RecipeView extends AppCompatActivity {
 
-    private TextView menuTextView;
-    private TextView matTextView;
+    private TextView menuTextView, matTextView, urlTexView;
     private AppBarConfiguration mAppBarConfiguration;
 
 
@@ -33,11 +32,12 @@ public class RecipeView extends AppCompatActivity {
         // 表示する
         menuTextView = findViewById(R.id.mainmenu);
         matTextView = findViewById(R.id.mainmat);
+        urlTexView = findViewById(R.id.url);
         final MakeDB makedb = new MakeDB(this);
         if (w_id != 0) {
             _id = makedb.readOneData(w_id);
         }
-        makedb.readOneData(menuTextView, matTextView, _id);
+        makedb.readOneData(menuTextView, matTextView, urlTexView, _id);
 
         //閉じるボタン
         Button closebutton =(Button)findViewById(R.id.closeButton);
