@@ -1,5 +1,7 @@
 package jp.ac.shohoku.umairecipe.ui.add;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,8 @@ public class AddFragment extends Fragment {
     private EditText edimenu, edimat, ediurl;
     private CharSequence text = "保存しました";
     private int duration = Toast.LENGTH_LONG;
+    private MakeDB makedb = new MakeDB(getActivity());
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -28,37 +32,48 @@ public class AddFragment extends Fragment {
                 ViewModelProviders.of(this).get(AddViewModel.class);
         View root = inflater.inflate(R.layout.recipe_edit, container, false);
 
+        //もしRecipeViewからきてたら0以外が受け取られる
+        SharedPreferences umaiPreferences = getContext().getSharedPreferences("umaiId", Context.MODE_PRIVATE);
+        int umaiid = umaiPreferences.getInt("Id", 0);
+
+
         edimenu = root.findViewById(R.id.edimenu);
         edimat = root.findViewById(R.id.edimat);
         ediurl = root.findViewById(R.id.ediurl);
 
-        //保存ボタン
-        Button savebutton =(Button)root.findViewById(R.id.saveButton);
-        savebutton.setOnClickListener(new View.OnClickListener() {
+        //homeから来た時の処理
+        if (umaiid == 0) {
+            //保存ボタン
+            Button savebutton = (Button) root.findViewById(R.id.saveButton);
+            savebutton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
-                //ここに保存ボタンを押したときの処理
-                //テキストエディットの内容をDBに追加する処理
-                String menu = edimenu.getText().toString();
-                String mat = edimat.getText().toString();
-                String url = ediurl.getText().toString();
-                menu = menu.replaceAll("　", "");
-                menu = menu.replaceAll(" ", "");
-                mat = mat.replaceAll("　", "");
-                mat = mat.replaceAll(" ", "");
+                @Override
+                public void onClick(View view) {
+                    //ここに保存ボタンを押したときの処理
+                    //テキストエディットの内容をDBに追加する処理
+                    String menu = edimenu.getText().toString();
+                    String mat = edimat.getText().toString();
+                    String url = ediurl.getText().toString();
+                    menu = menu.replaceAll("　", "");
+                    menu = menu.replaceAll(" ", "");
+                    mat = mat.replaceAll("　", "");
+                    mat = mat.replaceAll(" ", "");
 
 
-                if (menu == "" || mat == ""){
-                    Toast.makeText(getActivity(), "入力してください", duration).show();
+                    if (menu == "" || mat == "") {
+                        Toast.makeText(getActivity(), "入力してください", duration).show();
 
-                }else {
-                    MakeDB makedb = new MakeDB(getActivity());
-                    makedb.insertData(menu, mat, url);
-                    Toast.makeText(getActivity(), text, duration).show();
+                    } else {
+                        makedb.insertData(menu, mat, url);
+                        Toast.makeText(getActivity(), text, duration).show();
+                    }
                 }
-            }
-        });
+            });
+        }else {
+            //レシピビューから来た時の処理
+            //それぞれのtexteditに既存の情報を入れる
+            //追加保存ではなく、編集を行う
+        }
 
         //閉じるボタン
         Button ediclosebutton =(Button)root.findViewById(R.id.edicloseButton);

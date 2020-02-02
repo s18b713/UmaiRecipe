@@ -1,6 +1,8 @@
 package jp.ac.shohoku.umairecipe;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -67,7 +69,13 @@ public class RecipeView extends AppCompatActivity {
         toEditbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                //recipeViewに行きたい
+                SharedPreferences umaiPreferences;
+                umaiPreferences = getApplicationContext().getSharedPreferences("umaiId", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = umaiPreferences.edit();
+                editor.putInt("ID", umaiid);
+                editor.commit();
+
+                //recipeEditにいく
 
             }
         });
