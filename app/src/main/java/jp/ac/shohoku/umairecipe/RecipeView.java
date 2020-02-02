@@ -27,15 +27,17 @@ public class RecipeView extends AppCompatActivity {
         setContentView(R.layout.recipe_view);
 
         Intent intent = getIntent();
-        final int umaiid = intent.getIntExtra("umaiid", 0);
-
+        int w_id = intent.getIntExtra("w_id", 0);
+        int _id = intent.getIntExtra("_id", 0);
 
         // 表示する
         menuTextView = findViewById(R.id.mainmenu);
         matTextView = findViewById(R.id.mainmat);
         final MakeDB makedb = new MakeDB(this);
-        makedb.readOneData(this, umaiid, menuTextView, matTextView);
-
+        if (w_id != 0) {
+            _id = makedb.readOneData(w_id);
+        }
+        makedb.readOneData(menuTextView, matTextView, _id);
 
         //閉じるボタン
         Button closebutton =(Button)findViewById(R.id.closeButton);
@@ -49,10 +51,11 @@ public class RecipeView extends AppCompatActivity {
 
         //お気に入りボタン
         Button likebutton =(Button)findViewById(R.id.likeButton);
+        final int final_id = _id;
         likebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int like = makedb.reLike(RecipeView.this, umaiid);
+                int like = makedb.reLike(final_id);
 
                 if (like == 0){
                     Toast.makeText(RecipeView.this, "お気に入りから削除しました", Toast.LENGTH_SHORT).show();
@@ -66,13 +69,14 @@ public class RecipeView extends AppCompatActivity {
 
         //編集ボタン
         Button toEditbutton = (Button)findViewById(R.id.toEditbutton);
+        final int final_id1 = _id;
         toEditbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
                 SharedPreferences umaiPreferences;
-                umaiPreferences = getApplicationContext().getSharedPreferences("umaiId", Context.MODE_PRIVATE);
+                umaiPreferences = getApplicationContext().getSharedPreferences("_Id", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = umaiPreferences.edit();
-                editor.putInt("ID", umaiid);
+                editor.putInt("ID", final_id1);
                 editor.commit();
 
                 //recipeEditにいく

@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.TextView;
 
 
@@ -31,8 +32,6 @@ public class MakeDB {
         if(db == null){
             db = helper.getReadableDatabase();
         }
-        Log.d("debug","**********Cursor");
-
         Cursor cursor = db.query(
                 "umaidb",
                 new String[] {"_id", "menu", "mat", "url", "fav"},
@@ -44,7 +43,6 @@ public class MakeDB {
         );
 
         cursor.moveToFirst();
-
         StringBuilder sbuilder = new StringBuilder();
 
         for (int i = 0; i < cursor.getCount(); i++) {
@@ -90,20 +88,12 @@ public class MakeDB {
         cursor2.close();
 
 
-        Log.d("debug","**********"+sbuilder.toString());
+        Log.d("debug","**********all data read");
         textView.setText(sbuilder.toString());
         textView2.setText(sbuilder2.toString());
     }
 
-    public void readMenuData(Activity activity, TextView[] textViews){
-        if(helper == null){
-            helper = new OpenHelper(activity.getApplicationContext());
-        }
-        if(db == null){
-            db = helper.getReadableDatabase();
-        }
-        Log.d("debug","**********Cursor");
-
+    public void readMenuData(TextView[] textViews){
         Cursor cursor = db.query(
                 "umaidb",
                 new String[] { "_id", "menu"},
@@ -143,12 +133,10 @@ public class MakeDB {
         }
         cursor.close();
         cursorweek.close();
-        Log.d("debug","**********weekmenus");
+        Log.d("debug","**********read weekmenus");
     }
 
-    public void readMatData(Activity activity, TextView[] textViews){
-        Log.d("debug","**********Cursor");
-
+    public void readMatData(TextView[] textViews){
         Cursor cursor = db.query(
                 "umaidb",
                 new String[] { "_id", "mat"},
@@ -188,18 +176,10 @@ public class MakeDB {
         }
         cursor.close();
         cursorweek.close();
-        Log.d("debug","**********weekmats");
+        Log.d("debug","*********read weekmats");
     }
 
-    public void readOneData(Activity activity, int umaiid, TextView menuTextView, TextView matTextView){
-        if(helper == null){
-            helper = new OpenHelper(activity.getApplicationContext());
-        }
-        if(db == null){
-            db = helper.getReadableDatabase();
-        }
-        Log.d("debug","**********Cursor");
-
+    public void readOneData(TextView menuTextView, TextView matTextView, int id) {
         Cursor cursor = db.query(
                 "umaidb",
                 new String[] {"_id", "menu","mat"},
@@ -209,71 +189,20 @@ public class MakeDB {
                 null,
                 null
         );
-        Cursor cursor2 = db.query(
-                "umaiweek",
-                new String[] {"w_id", "umaiid"},
-                null,
-                null,
-                null,
-                null,
-                null
-        );
-        int readumaiid = 0;
         cursor.moveToFirst();
-        cursor2.moveToFirst();
-        //umaiweekとumaiidを比較して、readumaiidに_idを格納する
-        for (int j = 0; j < cursor2.getCount(); j++) {
-            if(umaiid == cursor2.getInt(0)) {
-                readumaiid = cursor2.getInt(1);
-            }
-            cursor2.moveToNext();
-        }
-
-        //readumaiidとumaidbの_idを比較してTextViewにいれる
         for (int i = 0; i < cursor.getCount(); i++) {
-            if (readumaiid == cursor.getInt(0)) {
+            if(id == cursor.getInt(0)) {
                 menuTextView.setText(cursor.getString(1));
                 matTextView.setText(cursor.getString(2));
             }
             cursor.moveToNext();
         }
-
         cursor.close();
-        cursor2.close();
-        Log.d("debug","**********weekmenus");
+        Log.d("debug","**********read recipe view(like to view)");
 
     }
 
-    public void reroadweekData(Activity activity) {
-        ContentValues values = new ContentValues();
-
-        db.delete("umaiweek", null, null);
-        helper.saveWData(db);
-    }
-
-    public void insertData(String menu, String mat, String url){
-
-        ContentValues values = new ContentValues();
-        values.put("menu", menu);
-        values.put("mat", mat);
-        values.put("url", url);
-        values.put("fav", 0);
-
-        db.insert("umaidb", null, values);
-    }
-
-    public int reLike(Activity activity, int umaiid){
-        Log.d("debug","**********Cursor");
-
-        Cursor cursor = db.query(
-                "umaidb",
-                new String[] {"_id", "menu","mat", "fav"},
-                null,
-                null,
-                null,
-                null,
-                null
-        );
+    public int readOneData(int w_id){
         Cursor cursor2 = db.query(
                 "umaiweek",
                 new String[] {"w_id", "umaiid"},
@@ -283,70 +212,44 @@ public class MakeDB {
                 null,
                 null
         );
-
-        int readumaiid = 0;
-        ContentValues cv = new ContentValues();
-        cursor.moveToFirst();
+        int _id = 0;
         cursor2.moveToFirst();
-        //umaiweekとumaiidを比較して、readumaiidに_idを格納する
-        for (int j = 0; j < cursor2.getCount(); j++) {
-            if(umaiid == cursor2.getInt(0)) {
-                readumaiid = cursor2.getInt(1);
+        //umaiweekとumaidbを比較して、_idを格納する
+        for (int i = 0; i < cursor2.getCount(); i++) {
+            if(w_id == cursor2.getInt(0)) {
+                _id = cursor2.getInt(1);
             }
             cursor2.moveToNext();
         }
-        int like = 0;
-
-        cursor.moveToFirst();
-        //readumaiidとumaidbの_idを比較して一致したらlikeの値を変える
-        for (int i = 0; i < cursor.getCount(); i++) {
-            if (readumaiid == cursor.getInt(0)) {
-
-                if (cursor.getInt(3) == 0){
-                    cv.put("fav", 1);
-                    like = 1;
-                }else {
-                    cv.put("fav", 0);
-                    like = 0;
-                }
-                db.update("umaidb", cv, "_id = " + readumaiid, null);
-            }
-            cursor.moveToNext();
-        }
-
-        cursor.close();
         cursor2.close();
-        Log.d("debug","**********weekmenus");
-        return like;
+        Log.d("debug","**********read recipe view(home to view)");
+        return _id;
     }
-
 
     public Object[] readLikeData() {
         Log.d("debug","**********likeCursor");
-
-        Object[] object = new Object[2];
         int fav = 1;
 
         Cursor cursor = db.query(
                 "umaidb",
-                new String[] {"menu","mat", "fav"},
+                new String[] {"_id", "menu", "fav"},
                 null,
                 null,
                 null,
                 null,
                 null
         );
-        String liketext;
 
         cursor.moveToFirst();
         StringBuilder likesbuilder = new StringBuilder();
+        StringBuilder likesbuilder2 = new StringBuilder();
 
         for (int i = 0; i < cursor.getCount(); i++) {
             if (cursor.getInt(2) == 1) {
                 likesbuilder.append(cursor.getString(0));
-//                likesbuilder.append(": ");
-//                likesbuilder.append(cursor.getString(1));
-                likesbuilder.append("\n");
+                likesbuilder.append(",");
+                likesbuilder2.append(cursor.getString(1));
+                likesbuilder2.append(",");
             }
             cursor.moveToNext();
         }
@@ -354,22 +257,30 @@ public class MakeDB {
         String x =likesbuilder.toString();
         x = x.replaceAll("　", "");
         x = x.replaceAll(" ", "");
+        String x2 =likesbuilder2.toString();
+        x2 = x2.replaceAll("　", "");
+        x2 = x2.replaceAll(" ", "");
 
-        if (x == ""){
-            likesbuilder.append("登録がありません");
+        if (x2 == "" || x == ""){
+            likesbuilder2.append("登録がありません");
+            likesbuilder.append("-1");
             fav = 0;
         }
-        Log.d("debug", "liketextの取得");
 
-        liketext = likesbuilder.toString();
+        String likesid = likesbuilder.toString();
+        String likesmenu = likesbuilder2.toString();
 
-        object[0] = liketext;
-        object[1] = fav;
+        Object[] like = new Object[3];
+        like[0] = likesid;
+        like[1] = likesmenu;
+        like[2] = fav;
 
-        return object;
+        Log.d("debug", "get likemenu and id");
+
+        return like;
     }
 
-    public int[] coutWeekMat() {
+    public int[] countWeekMat() {
         int[] weekmat = new int[7];
 
         Cursor cursor = db.query(
@@ -402,7 +313,6 @@ public class MakeDB {
             cursor.moveToFirst();
             for (int j = 0; j < cursor.getCount(); j++) {
                 id = cursor.getInt(0);
-                int count = 0;
                 if (umaiid == id) {
                     string = cursor.getString(1);
                     strs = string.split("\n");
@@ -415,7 +325,121 @@ public class MakeDB {
         cursor.close();
         cursorweek.close();
 
+        Log.d("debug", "count mats of week");
 
         return weekmat;
     }
+
+    public void editText(int id, EditText edimenu, EditText edimat, EditText ediurl) {
+        Cursor cursor = db.query(
+                "umaidb",
+                new String[] {"_id", "menu","mat", "url"},
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+        cursor.moveToFirst();
+
+        for (int i = 0; i < cursor.getCount(); i++) {
+            if (id == cursor.getInt(0)) {
+                edimenu.setText(cursor.getString(1));
+                edimat.setText(cursor.getString(2));
+                ediurl.setText(cursor.getString(3));
+            }
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        Log.d("debug","**********read edit texs (view to edit)");
+
+    }
+
+    public void editData(int id, String menu, String mat, String url) {
+        Cursor cursor = db.query(
+                "umaidb",
+                new String[] {"_id", "menu","mat", "url"},
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+        cursor.moveToFirst();
+        ContentValues cv = new ContentValues();
+
+        for (int i = 0; i < cursor.getCount(); i++) {
+            if (id == cursor.getInt(0)) {
+                cv.put("menu", menu);
+                cv.put("mat", mat);
+                cv.put("url", url);
+                db.update("umaidb", cv, "menu = " + menu, null);
+                db.update("umaidb", cv, "mat = " + mat, null);
+                db.update("umaidb", cv, "url = " + url, null);
+            }
+            cursor.moveToNext();
+        }
+        cursor.close();
+        Log.d("debug","**********reedit data");
+    }
+
+    public void reroadweekData() {
+        db.delete("umaiweek", null, null);
+        helper.saveWData(db);
+        Log.d("debug","**********remake week data");
+
+    }
+
+    public void insertData(String menu, String mat, String url){
+
+        ContentValues values = new ContentValues();
+        values.put("menu", menu);
+        values.put("mat", mat);
+        values.put("url", url);
+        values.put("fav", 0);
+
+        db.insert("umaidb", null, values);
+        Log.d("debug","**********insertdata");
+
+    }
+
+    public int reLike(int _id){
+        Cursor cursor = db.query(
+                "umaidb",
+                new String[] {"_id", "menu","mat", "fav"},
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+
+        ContentValues cv = new ContentValues();
+        int like = 0;
+
+        cursor.moveToFirst();
+        for (int i = 0; i < cursor.getCount(); i++) {
+
+            if (_id == cursor.getInt(0)) {
+                if (cursor.getInt(3) == 0){
+                    cv.put("fav", 1);
+                    like = 1;
+                }else {
+                    cv.put("fav", 0);
+                    like = 0;
+                }
+                db.update("umaidb", cv, "_id = " + _id, null);
+            }
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        Log.d("debug","**********relike");
+        return like;
+    }
+
+
+
 }

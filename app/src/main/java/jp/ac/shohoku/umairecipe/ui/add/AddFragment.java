@@ -23,7 +23,6 @@ public class AddFragment extends Fragment {
     private EditText edimenu, edimat, ediurl;
     private CharSequence text = "保存しました";
     private int duration = Toast.LENGTH_LONG;
-    private MakeDB makedb = new MakeDB(getActivity());
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -32,9 +31,12 @@ public class AddFragment extends Fragment {
                 ViewModelProviders.of(this).get(AddViewModel.class);
         View root = inflater.inflate(R.layout.recipe_edit, container, false);
 
+        final MakeDB makedb = new MakeDB(getActivity());
+
+
         //もしRecipeViewからきてたら0以外が受け取られる
-        SharedPreferences umaiPreferences = getContext().getSharedPreferences("umaiId", Context.MODE_PRIVATE);
-        int umaiid = umaiPreferences.getInt("Id", 0);
+        final SharedPreferences umaiPreferences = getContext().getSharedPreferences("_Id", Context.MODE_PRIVATE);
+        final int id = umaiPreferences.getInt("Id", 0);
 
 
         edimenu = root.findViewById(R.id.edimenu);
@@ -42,7 +44,7 @@ public class AddFragment extends Fragment {
         ediurl = root.findViewById(R.id.ediurl);
 
         //homeから来た時の処理
-        if (umaiid == 0) {
+        if (id == 0) {
             //保存ボタン
             Button savebutton = (Button) root.findViewById(R.id.saveButton);
             savebutton.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +74,33 @@ public class AddFragment extends Fragment {
         }else {
             //レシピビューから来た時の処理
             //それぞれのtexteditに既存の情報を入れる
+            makedb.editText(id, edimenu, edimat, ediurl);
             //追加保存ではなく、編集を行う
+            Button savebutton = (Button) root.findViewById(R.id.saveButton);
+            savebutton.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    //ここに保存ボタンを押したときの処理
+                    //テキストエディットの内容をDBに追加する処理
+                    String menu = edimenu.getText().toString();
+                    String mat = edimat.getText().toString();
+                    String url = ediurl.getText().toString();
+                    menu = menu.replaceAll("　", "");
+                    menu = menu.replaceAll(" ", "");
+                    mat = mat.replaceAll("　", "");
+                    mat = mat.replaceAll(" ", "");
+
+                    if (menu == "" || mat == "") {
+                        Toast.makeText(getActivity(), "入力してください", duration).show();
+
+                    } else {
+                        makedb.editData(id, menu, mat, url);
+                        Toast.makeText(getActivity(), text, duration).show();
+                    }
+                }
+            });
+
         }
 
         //閉じるボタン

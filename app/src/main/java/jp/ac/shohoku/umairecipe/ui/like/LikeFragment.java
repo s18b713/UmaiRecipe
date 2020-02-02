@@ -1,5 +1,6 @@
 package jp.ac.shohoku.umairecipe.ui.like;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,18 +13,18 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.ui.AppBarConfiguration;
 
 import jp.ac.shohoku.umairecipe.MakeDB;
 import jp.ac.shohoku.umairecipe.R;
+import jp.ac.shohoku.umairecipe.RecipeView;
 
 public class LikeFragment extends Fragment {
 
     private LikeViewModel likeViewModel;
-    private String liketext, haslike;
-    private String[] likeText;
     private LinearLayout linearLayout;
-    int fav = 0;
-    Object[] getLTandfav;
+    private AppBarConfiguration mAppBarConfiguration;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -34,29 +35,37 @@ public class LikeFragment extends Fragment {
         linearLayout = root.findViewById(R.id.likeViewLayout);
 
         final MakeDB makedb = new MakeDB(getActivity());
-        getLTandfav = makedb.readLikeData();
+        Object[] getLIDandfav = makedb.readLikeData();
+        String ids = (String) getLIDandfav[0];
+        String menus = (String) getLIDandfav[1];
+        final int fav = (int) getLIDandfav[2];
+        String[] idS = ids.split(",");
+        String[] menuS = menus.split(",");
+        int[] Ids = new int[idS.length];
+        for (int i = 0; i < idS.length; i++){
+            Ids[i] = Integer.parseInt(idS[i]);
+        }
 
-        liketext = (String) getLTandfav[0];
-        fav = (int) getLTandfav[1];
-        likeText = liketext.split("\n");
-
-        for (int i = 0; i < likeText.length; i++){
+        for (int i = 0; i < Ids.length; i++){
             final TextView textView = new TextView(getContext());
-            textView.setText(likeText[i]);
-            haslike = likeText[i];
+            textView.setText(menuS[i]);
 
+            final int _id = Ids[i];
             textView.setId(R.id.likeText);
             textView.setLinksClickable(true);
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (fav == 1) {
-                        Toast.makeText(getActivity(), haslike, Toast.LENGTH_SHORT).show();
-                        //likeText[i]をもってRecipeViewに行きたい
+                        String umai = String.valueOf(_id);
+                        Toast.makeText(getActivity(), umai, Toast.LENGTH_SHORT).show();
+                        //Recipeviewに遷移
+                        Intent intent = new Intent(getActivity(), RecipeView.class);
+                        intent.putExtra("_id", _id);
+                        startActivity(intent);
                     }
                 }
             });
-
             linearLayout.addView(textView);
         }
 

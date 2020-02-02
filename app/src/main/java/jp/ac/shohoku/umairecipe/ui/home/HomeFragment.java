@@ -40,7 +40,8 @@ public class HomeFragment extends Fragment {
         final MakeDB makedb = new MakeDB(Activity);
 
         //各テキスト、ボタンをまとめる
-        final TextView[] textView1s = {(TextView) root.findViewById(R.id.SunText1),
+        final TextView[] textView1s = {
+                (TextView) root.findViewById(R.id.SunText1),
                 (TextView) root.findViewById(R.id.MonText1),
                 (TextView) root.findViewById(R.id.TueText1),
                 (TextView) root.findViewById(R.id.WedText1),
@@ -48,7 +49,8 @@ public class HomeFragment extends Fragment {
                 (TextView) root.findViewById(R.id.FriText1),
                 (TextView) root.findViewById(R.id.SatText1)};
 
-        final TextView[] textView2s = {(TextView) root.findViewById(R.id.SunText2),
+        final TextView[] textView2s = {
+                (TextView) root.findViewById(R.id.SunText2),
                 (TextView) root.findViewById(R.id.MonText2),
                 (TextView) root.findViewById(R.id.TueText2),
                 (TextView) root.findViewById(R.id.WedText2),
@@ -56,16 +58,17 @@ public class HomeFragment extends Fragment {
                 (TextView) root.findViewById(R.id.FriText2),
                 (TextView) root.findViewById(R.id.SatText2)};
 
-        final Button[] buttons = {(Button) root.findViewById(R.id.SunButton),
+        final Button[] buttons = {
+                (Button) root.findViewById(R.id.SunButton),
                 (Button) root.findViewById(R.id.MonButton),
                 (Button) root.findViewById(R.id.TueButton),
                 (Button) root.findViewById(R.id.WedButton),
                 (Button) root.findViewById(R.id.ThuButton),
-                (Button) root.findViewById(R.id.WedButton),
+                (Button) root.findViewById(R.id.FriButton),
                 (Button) root.findViewById(R.id.SatButton)};
 
         //まずはDBのメニュー名を曜日欄に表示する
-        makedb.readMenuData(Activity, textView2s);
+        makedb.readMenuData(textView2s);
 
         //今日の曜日の色を変える
         WeekColor(textView1s);
@@ -90,7 +93,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 //ここに料理ボタンを押したときの処理
                 //料理名だけの表示になる
-                makedb.readMenuData(Activity, textView2s);
+                makedb.readMenuData(textView2s);
                 //曜日の表示サイズの変更
                 setmenuSize(textView1s,textView2s,buttons);
 
@@ -105,11 +108,11 @@ public class HomeFragment extends Fragment {
 
                 //ここに材料ボタンを押したときの処理
                 //材料だけの表示になる
-                makedb.readMatData(Activity, textView2s);
+                makedb.readMatData(textView2s);
                 //曜日の表示サイズの変更、表示内容の変更
                 //曜日ごとのmatの数を取得
-                int[] weekmat= new int[7];
-                weekmat = makedb.coutWeekMat();
+                int[] weekmat;
+                weekmat = makedb.countWeekMat();
                 setmatSize(weekmat,textView1s,textView2s,buttons);
 
             }
@@ -121,9 +124,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //曜日ごとのメニューを変える
-                makedb.reroadweekData(Activity);
+                makedb.reroadweekData();
                 //画面を更新する
-                makedb.readMenuData(Activity, textView2s);
+                makedb.readMenuData(textView2s);
             }
         });
 
@@ -135,7 +138,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 // インデントにこの画面と遷移するRecipeViewを指定する
                 Intent intent = new Intent(Activity, RecipeView.class);
-                intent.putExtra("umaiid", 2);
+                intent.putExtra("w_id", 2);
                 startActivity(intent);
             }
         });
@@ -145,7 +148,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 //ここに火曜ボタンを押したときの処理
                 Intent intent = new Intent(Activity, RecipeView.class);
-                intent.putExtra("umaiid", 3);
+                intent.putExtra("w_id", 3);
                 startActivity(intent);
             }
         });
@@ -155,7 +158,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 //ここに水曜ボタンを押したときの処理
                 Intent intent = new Intent(Activity, RecipeView.class);
-                intent.putExtra("umaiid", 4);
+                intent.putExtra("w_id", 4);
                 startActivity(intent);
             }
         });
@@ -165,7 +168,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 //ここに木曜ボタンを押したときの処理
                 Intent intent = new Intent(Activity, RecipeView.class);
-                intent.putExtra("umaiid", 5);
+                intent.putExtra("w_id", 5);
                 startActivity(intent);
             }
         });
@@ -173,19 +176,18 @@ public class HomeFragment extends Fragment {
         fributton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //ここに金曜ボタンを押したときの処理
+                //ここに木曜ボタンを押したときの処理
                 Intent intent = new Intent(Activity, RecipeView.class);
-                intent.putExtra("umaiid", 6);
+                intent.putExtra("w_id", 6);
                 startActivity(intent);
             }
-        });
-        Button satbutton = (Button) root.findViewById(R.id.SatButton);
+        });        Button satbutton = (Button) root.findViewById(R.id.SatButton);
         satbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //ここに土曜ボタンを押したときの処理
                 Intent intent = new Intent(Activity, RecipeView.class);
-                intent.putExtra("umaiid", 7);
+                intent.putExtra("w_id", 7);
                 startActivity(intent);
             }
         });
@@ -195,7 +197,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 //ここに日曜ボタンを押したときの処理
                 Intent intent = new Intent(Activity, RecipeView.class);
-                intent.putExtra("umaiid", 1);
+                intent.putExtra("w_id", 1);
                 startActivity(intent);
             }
         });
