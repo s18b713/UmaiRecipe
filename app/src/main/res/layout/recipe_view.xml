@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -73,12 +74,12 @@
 
         <TextView
             android:id="@+id/mainmenu"
-            android:layout_width="219dp"
-            android:layout_height="49dp"
-            android:background="#F7F7AD"
+            android:layout_width="230dp"
+            android:layout_height="38dp"
+            android:background="#81F7F6AD"
             android:text="題名"
             android:textAlignment="center"
-            android:textSize="40sp"/>
+            android:textSize="25sp" />
     </LinearLayout>
 
     <Space
@@ -94,28 +95,24 @@
         <TextView
             android:id="@+id/mainmat"
             android:layout_width="465dp"
-            android:layout_height="458dp"
-            android:background="#D5EDFF"
+            android:layout_height="600dp"
+            android:background="#95D5EDFF"
             android:text="材料"
             android:textAlignment="center"
-            android:textSize="25sp"/>
+            android:textSize="25sp"
+            app:fontFamily="casual" />
     </LinearLayout>
 
     <Space
         android:layout_width="wrap_content"
         android:layout_height="25dp"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
-
         <TextView
             android:id="@+id/url"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="URL"
-            android:textSize="25sp"/>
+            android:textSize="25sp" />
 
         <Space
             android:layout_width="200dp"
@@ -123,13 +120,13 @@
 
         <Button
             android:id="@+id/rec"
-            android:layout_width="189dp"
-            android:layout_height="70dp"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
             android:background="@drawable/gradation_sample"
             android:text="おすすめ"
             android:textSize="30sp"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:layout_gravity="right"/>
 
-    </LinearLayout>
 
 </LinearLayout>

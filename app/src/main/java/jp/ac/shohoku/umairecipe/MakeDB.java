@@ -46,18 +46,20 @@ public class MakeDB {
         StringBuilder sbuilder = new StringBuilder();
 
         for (int i = 0; i < cursor.getCount(); i++) {
+            sbuilder.append("【");
             sbuilder.append(cursor.getString(0));
-            sbuilder.append("    ");
+            sbuilder.append("：");
             sbuilder.append(cursor.getString(1));
-            sbuilder.append(": ");
+            sbuilder.append("】");
+            sbuilder.append("\n");
             sbuilder.append(cursor.getString(2));
             sbuilder.append("    url=");
             sbuilder.append(cursor.getString(3));
             sbuilder.append("    ");
             if (cursor.getInt(4) == 1){
-                sbuilder.append("fav");
+                sbuilder.append("<fav>");
             }else {
-                sbuilder.append("unfav");
+                sbuilder.append("<unfav>");
             }
             sbuilder.append("\n");
             cursor.moveToNext();
