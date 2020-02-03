@@ -2,4 +2,5 @@
 <resources>
     <item name="likecloseButton" type="id" />
     <item name="likeText" type="id" />
+    <item name="Recip_viewFragment" type="id" />
 </resources>

@@ -377,9 +377,7 @@ public class MakeDB {
                 cv.put("menu", menu);
                 cv.put("mat", mat);
                 cv.put("url", url);
-                db.update("umaidb", cv, "menu = " + menu, null);
-                db.update("umaidb", cv, "mat = " + mat, null);
-                db.update("umaidb", cv, "url = " + url, null);
+                db.update("umaidb", cv, "_id = " + id, null);
             }
             cursor.moveToNext();
         }
