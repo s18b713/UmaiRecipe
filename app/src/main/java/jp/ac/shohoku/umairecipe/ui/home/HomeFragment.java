@@ -81,6 +81,7 @@ public class HomeFragment extends Fragment {
         editor.commit();
 
 
+
 //**********DB_test用
         Button dbbutton = (Button) root.findViewById(R.id.dbButton);
         dbbutton.setOnClickListener(new View.OnClickListener() {
