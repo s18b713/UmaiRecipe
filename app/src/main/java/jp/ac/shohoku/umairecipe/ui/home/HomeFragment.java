@@ -30,6 +30,7 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         final View root = inflater.inflate(R.layout.main_home, container, false);
@@ -209,7 +210,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
         return root;
     }
 
@@ -276,7 +276,6 @@ public class HomeFragment extends Fragment {
                 buttons[i].setHeight(size);
             }
         }
-
-
     }
+
 }

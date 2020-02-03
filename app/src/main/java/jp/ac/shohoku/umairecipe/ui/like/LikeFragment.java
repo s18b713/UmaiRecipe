@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.ui.AppBarConfiguration;
 
@@ -25,12 +27,15 @@ public class LikeFragment extends Fragment {
     private LinearLayout linearLayout;
     private AppBarConfiguration mAppBarConfiguration;
 
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         likeViewModel =
                 ViewModelProviders.of(this).get(LikeViewModel.class);
         View root = inflater.inflate(R.layout.like_view, container, false);
+
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(this, "likeF");
 
         linearLayout = root.findViewById(R.id.likeViewLayout);
 
@@ -42,8 +47,10 @@ public class LikeFragment extends Fragment {
         String[] idS = ids.split(",");
         String[] menuS = menus.split(",");
         int[] Ids = new int[idS.length];
-        for (int i = 0; i < idS.length; i++){
-            Ids[i] = Integer.parseInt(idS[i]);
+        for (int i = 0; i < idS.length; i++) {
+            if (idS[i] != "") {
+                Ids[i] = Integer.parseInt(idS[i]);
+            }
         }
 
         for (int i = 0; i < Ids.length; i++){

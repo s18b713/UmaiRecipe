@@ -9,9 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class DBTest extends AppCompatActivity {
 
-    private TextView textView;
-    private TextView textView2;
-    private Button button, button2;
+    private TextView textView, textView2;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,12 +20,11 @@ public class DBTest extends AppCompatActivity {
 
         textView = findViewById(R.id.dbtesttext);
         textView2 = findViewById(R.id.weekdbtest);
-        button2 = findViewById(R.id.button2);
-
+        button = findViewById(R.id.button2);
         final MakeDB makedb = new MakeDB(this);
         makedb.readAllData(this, textView, textView2);
 
-        button2.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 makedb.readAllData(DBTest.this, textView, textView2);

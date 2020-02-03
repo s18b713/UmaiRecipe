@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,17 +23,15 @@ public class AddFragment extends Fragment {
     private EditText edimenu, edimat, ediurl;
     private CharSequence text = "保存しました";
     private int duration = Toast.LENGTH_LONG;
-    private LinearLayout linearLayout;
 
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater,
+                             final ViewGroup container, Bundle savedInstanceState) {
         addViewModel =
                 ViewModelProviders.of(this).get(AddViewModel.class);
         final View root = inflater.inflate(R.layout.recipe_edit, container, false);
 
         final MakeDB makedb = new MakeDB(getActivity());
-
 
         //もしRecipeViewからきてたら0以外が受け取られる
         final SharedPreferences umaiPreferences = getContext().getSharedPreferences("_Id", Context.MODE_PRIVATE);
@@ -43,6 +40,7 @@ public class AddFragment extends Fragment {
         edimenu = root.findViewById(R.id.edimenu);
         edimat = root.findViewById(R.id.edimat);
         ediurl = root.findViewById(R.id.ediurl);
+
 
         //homeから来た時の処理
         if (id == 0) {
@@ -62,7 +60,6 @@ public class AddFragment extends Fragment {
                     mat = mat.replaceAll("　", "");
                     mat = mat.replaceAll(" ", "");
 
-
                     if (menu == "" || mat == "") {
                         Toast.makeText(getActivity(), "入力してください", duration).show();
 
@@ -74,7 +71,9 @@ public class AddFragment extends Fragment {
             });
         }else {
             //レシピビューから来た時の処理
+
             //それぞれのtexteditに既存の情報を入れる
+
             makedb.editText(id, edimenu, edimat, ediurl);
             //追加保存ではなく、編集を行う
             Button savebutton = (Button) root.findViewById(R.id.saveButton);
@@ -99,19 +98,18 @@ public class AddFragment extends Fragment {
                         makedb.editData(id, menu, mat, url);
                         Toast.makeText(getActivity(), text, duration).show();
                     }
+
                 }
             });
 
         }
+
 
         //閉じるボタン
         Button ediclosebutton =(Button)root.findViewById(R.id.edicloseButton);
         ediclosebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //このボタンを押すと、ホーム画面に移動する
-
-
                 getFragmentManager().popBackStack();
                 SharedPreferences umaiPreferences;
                 umaiPreferences = getContext().getSharedPreferences("_Id", Context.MODE_PRIVATE);

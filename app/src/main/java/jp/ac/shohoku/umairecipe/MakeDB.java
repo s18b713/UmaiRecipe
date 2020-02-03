@@ -191,6 +191,7 @@ public class MakeDB {
                 null,
                 null
         );
+
         cursor.moveToFirst();
         for (int i = 0; i < cursor.getCount(); i++) {
             if(id == cursor.getInt(0)) {
@@ -201,7 +202,7 @@ public class MakeDB {
             cursor.moveToNext();
         }
         cursor.close();
-        Log.d("debug","**********read recipe view(like to view)");
+        Log.d("debug","**********read recipe view(to view)");
 
     }
 
@@ -265,7 +266,7 @@ public class MakeDB {
         x2 = x2.replaceAll(" ", "");
 
         if (x2 == "" || x == ""){
-            likesbuilder2.append("登録がありません");
+            likesbuilder2.append("登録がありません,");
             likesbuilder.append("-1");
             fav = 0;
         }
