@@ -373,10 +373,10 @@ public class MakeDB {
         for (int i = 0; i < cursor.getCount(); i++) {
             if (id == cursor.getInt(0)) {
                 cv.put("menu", menu);
-                cv.put("mat", mat);
-                cv.put("url", url);
                 db.update("umaidb", cv, "menu = " + menu, null);
+                cv.put("mat", mat);
                 db.update("umaidb", cv, "mat = " + mat, null);
+                cv.put("url", url);
                 db.update("umaidb", cv, "url = " + url, null);
             }
             cursor.moveToNext();
