@@ -116,7 +116,7 @@
                         <TextView
                             android:id="@+id/mainmat"
                             android:layout_width="465dp"
-                            android:layout_height="458dp"
+                            android:layout_height="wrap_content"
                             android:background="#D5EDFF"
                             android:text="材料"
                             android:textAlignment="center"
