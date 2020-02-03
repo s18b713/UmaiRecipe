@@ -6,18 +6,26 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
+
+import jp.ac.shohoku.umairecipe.ui.add.AddFragment;
 
 
 public class RecipeView extends AppCompatActivity {
 
     private TextView menuTextView, matTextView, urlTexView;
     private AppBarConfiguration mAppBarConfiguration;
-
+    private LinearLayout linearLayout;
+    private FrameLayout frameLayout;
 
     @Override
     protected void onCreate(Bundle saveInstanceState) {
@@ -79,8 +87,16 @@ public class RecipeView extends AppCompatActivity {
                 editor.putInt("ID", final_id1);
                 editor.commit();
 
-                //recipeEditにいく
-
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.addToBackStack(null);
+                ConstraintLayout constraintLayout = new ConstraintLayout(getApplicationContext());
+                constraintLayout.setId(R.id.Recip_viewFragment);
+                linearLayout = findViewById(R.id.recipe_viewlayout);
+                frameLayout = findViewById(R.id.recipe_view);
+                frameLayout.addView(constraintLayout);
+                fragmentTransaction.replace(R.id.Recip_viewFragment, new AddFragment());
+                fragmentTransaction.commit();
             }
         });
 
@@ -89,7 +105,9 @@ public class RecipeView extends AppCompatActivity {
         rec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //ここにおすすめを押したときの処理
+                //
+                Toast toast = new Toast(getApplicationContext());
+                toast.makeText(getApplicationContext(), "coming soon...", Toast.LENGTH_SHORT).show();
             }
         });
 

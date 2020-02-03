@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,13 +24,14 @@ public class AddFragment extends Fragment {
     private EditText edimenu, edimat, ediurl;
     private CharSequence text = "保存しました";
     private int duration = Toast.LENGTH_LONG;
+    private LinearLayout linearLayout;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         addViewModel =
                 ViewModelProviders.of(this).get(AddViewModel.class);
-        View root = inflater.inflate(R.layout.recipe_edit, container, false);
+        final View root = inflater.inflate(R.layout.recipe_edit, container, false);
 
         final MakeDB makedb = new MakeDB(getActivity());
 
@@ -108,6 +110,8 @@ public class AddFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //このボタンを押すと、ホーム画面に移動する
+
+
                 getFragmentManager().popBackStack();
                 SharedPreferences umaiPreferences;
                 umaiPreferences = getContext().getSharedPreferences("_Id", Context.MODE_PRIVATE);
