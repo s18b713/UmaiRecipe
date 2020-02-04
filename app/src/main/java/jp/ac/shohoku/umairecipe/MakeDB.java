@@ -181,7 +181,7 @@ public class MakeDB {
         Log.d("debug","*********read weekmats");
     }
 
-    public void readOneData(TextView menuTextView, TextView matTextView, TextView urlTextView, int id) {
+    public String readOneData(TextView menuTextView, TextView matTextView, TextView urlTextView, int id) {
         Cursor cursor = db.query(
                 "umaidb",
                 new String[] {"_id", "menu","mat", "url"},
@@ -192,18 +192,21 @@ public class MakeDB {
                 null
         );
 
+        String url = "";
         cursor.moveToFirst();
         for (int i = 0; i < cursor.getCount(); i++) {
             if(id == cursor.getInt(0)) {
                 menuTextView.setText(cursor.getString(1));
                 matTextView.setText(cursor.getString(2));
                 urlTextView.setText(cursor.getString(3));
+                url = cursor.getString(3);
             }
             cursor.moveToNext();
         }
         cursor.close();
         Log.d("debug","**********read recipe view(to view)");
 
+        return url;
     }
 
     public int readOneData(int w_id){

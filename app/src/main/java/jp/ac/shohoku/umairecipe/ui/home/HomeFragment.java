@@ -101,15 +101,13 @@ public class HomeFragment extends Fragment {
         menubutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //ここに料理ボタンを押したときの処理
-                //料理名だけの表示になる
-                makedb.readMenuData(textView2s);
-                //曜日の表示サイズの変更
-                setmenuSize(textView1s,textView2s,buttons);
-                //背景が変わる
-                ((ImageView)root.findViewById(R.id.homeimage)).setImageResource(R.drawable.spoonandfork);
-
-
+            //ここに料理ボタンを押したときの処理
+            //料理名だけの表示になる
+            makedb.readMenuData(textView2s);
+            //曜日の表示サイズの変更
+            setmenuSize(textView1s,textView2s,buttons);
+            //背景が変わる
+            ((ImageView)root.findViewById(R.id.homeimage)).setImageResource(R.drawable.spoonandfork);
             }
         });
 

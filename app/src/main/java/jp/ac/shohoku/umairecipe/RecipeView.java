@@ -3,6 +3,7 @@ package jp.ac.shohoku.umairecipe;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,8 @@ public class RecipeView extends AppCompatActivity {
 
     private TextView menuTextView, matTextView, urlTexView;
     private FrameLayout frameLayout;
+    private String url;
+
 
     @Override
     protected void onCreate(Bundle saveInstanceState) {
@@ -29,7 +32,7 @@ public class RecipeView extends AppCompatActivity {
 
         setContentView(R.layout.recipe_view);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         int w_id = intent.getIntExtra("w_id", 0);
         int _id = intent.getIntExtra("_id", 0);
 
@@ -41,9 +44,23 @@ public class RecipeView extends AppCompatActivity {
         if (w_id != 0) {
             _id = makedb.readOneData(w_id);
         }
-        makedb.readOneData(menuTextView, matTextView, urlTexView, _id);
 
-        //閉じるボタン
+        url = makedb.readOneData(menuTextView, matTextView, urlTexView, _id);
+
+        urlTexView.setLinksClickable(true);
+        urlTexView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(RecipeView.this, url, Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+
+
+                //閉じるボタン
         Button closebutton =(Button)findViewById(R.id.closeButton);
         closebutton.setOnClickListener(new View.OnClickListener() {
             @Override
