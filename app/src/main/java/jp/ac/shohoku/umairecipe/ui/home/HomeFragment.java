@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -135,6 +136,9 @@ public class HomeFragment extends Fragment {
                 makedb.reroadweekData();
                 //画面を更新する
                 makedb.readMenuData(textView2s);
+                Toast toast = new Toast(Activity.getApplicationContext());
+                toast.makeText(Activity.getApplicationContext(), "更新しました", Toast.LENGTH_SHORT).show();
+                setmenuSize(textView1s, textView2s, buttons);
             }
         });
 
