@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         //既存のDBを消す
         // verupを防ぐ（完成時に消去すること）
-        //deleteDatabase("UmaiRecipeDB.db");
+        deleteDatabase("UmaiRecipeDB.db");
 
         //DBを作る
         final MakeDB makedb = new MakeDB(this);
