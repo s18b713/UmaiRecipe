@@ -71,6 +71,7 @@ public class RecipeView extends AppCompatActivity {
             }
         });
 
+
         //編集ボタン
         Button toEditbutton = (Button)findViewById(R.id.toEditbutton);
         final int final_id1 = _id;
