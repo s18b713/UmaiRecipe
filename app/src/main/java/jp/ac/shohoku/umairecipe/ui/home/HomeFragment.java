@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -105,6 +106,9 @@ public class HomeFragment extends Fragment {
                 makedb.readMenuData(textView2s);
                 //曜日の表示サイズの変更
                 setmenuSize(textView1s,textView2s,buttons);
+                //背景が変わる
+                ((ImageView)root.findViewById(R.id.homeimage)).setImageResource(R.drawable.spoonandfork);
+
 
             }
         });
@@ -123,6 +127,8 @@ public class HomeFragment extends Fragment {
                 int[] weekmat;
                 weekmat = makedb.countWeekMat();
                 setmatSize(weekmat,textView1s,textView2s,buttons);
+                //背景が変わる
+                ((ImageView)root.findViewById(R.id.homeimage)).setImageResource(R.drawable.carrot);
 
             }
         });
