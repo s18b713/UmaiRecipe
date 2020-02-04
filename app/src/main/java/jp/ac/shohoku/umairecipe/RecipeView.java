@@ -60,11 +60,15 @@ public class RecipeView extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int like = makedb.reLike(final_id);
+                Button button;
+                button = findViewById(R.id.likeButton);
 
                 if (like == 0){
                     Toast.makeText(RecipeView.this, "お気に入りから削除しました", Toast.LENGTH_SHORT).show();
+                    button.setBackgroundResource(R.drawable.center_icon);
                 }else if (like == 1){
                     Toast.makeText(RecipeView.this, "お気に入りに登録しました", Toast.LENGTH_SHORT).show();
+                    button.setBackgroundResource(R.drawable.center_icon2);
                 }else{
                     Toast.makeText(RecipeView.this, "LikeError", Toast.LENGTH_SHORT).show();
                 }
